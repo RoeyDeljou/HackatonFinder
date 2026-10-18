@@ -4,6 +4,7 @@ import { pushConfigured } from '../lib/push.js';
 import { getStore, storageMisconfigured } from '../lib/store.js';
 import { SUGGESTED_FIELDS, DEFAULT_FIELDS } from '../lib/fields.js';
 import { SOURCES } from '../lib/sources/index.js';
+import { SLOTS } from '../lib/schedule.js';
 
 export async function GET() {
   return json({
@@ -15,6 +16,6 @@ export async function GET() {
     sources: [...SOURCES.map((s) => s.name), ...(aiEnabled() ? ['AI web search'] : [])],
     suggestedFields: SUGGESTED_FIELDS,
     defaultFields: DEFAULT_FIELDS,
-    schedule: { morning: process.env.SCHEDULE_MORNING_LABEL || '08:00', afternoon: process.env.SCHEDULE_AFTERNOON_LABEL || '15:00', digest: process.env.SCHEDULE_DIGEST_LABEL || '21:00', tz: process.env.SCHEDULE_TZ_LABEL || 'Israel time' },
+    schedule: { morning: SLOTS.morning.at, afternoon: SLOTS.afternoon.at, digest: SLOTS.digest.at, tz: process.env.SCHEDULE_TZ_LABEL || 'Israel time' },
   });
 }

@@ -87,13 +87,13 @@ test('full flow: save fields → streamed first search → results → cron → 
 
   // Cron requires the secret.
   assert.equal((await fetch(base + '/api/cron?job=search&slot=morning')).status, 401);
-  const cron = await fetch(base + '/api/cron?job=search&slot=morning', { headers: { authorization: 'Bearer test-secret' } });
+  const cron = await fetch(base + '/api/cron?job=search&slot=morning&force=1', { headers: { authorization: 'Bearer test-secret' } });
   assert.equal(cron.status, 200);
   const cj = await cron.json();
   assert.equal(cj.profiles, 1);
   assert.equal(pushes.length, 0, 'nothing new since first search');
 
-  const dig = await (await fetch(base + '/api/cron?job=digest', { headers: { authorization: 'Bearer test-secret' } })).json();
+  const dig = await (await fetch(base + '/api/cron?job=digest&force=1', { headers: { authorization: 'Bearer test-secret' } })).json();
   assert.match(dig.result[DEV], /found|sent/);
 
   const tp = await fetch(base + '/api/test-push', { method: 'POST', headers: h });

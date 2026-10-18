@@ -79,8 +79,8 @@ async function startScheduler() {
   const { scheduledSearch, dailyDigest } = await import('./lib/jobs.js');
   const tz = process.env.SCHEDULE_TZ || 'Asia/Jerusalem';
   const plan = [
-    { at: process.env.SCHEDULE_MORNING || '08:00', run: () => scheduledSearch({ slot: 'morning' }) },
-    { at: process.env.SCHEDULE_AFTERNOON || '15:00', run: () => scheduledSearch({ slot: 'afternoon' }) },
+    { at: process.env.SCHEDULE_MORNING || '10:00', run: () => scheduledSearch({ slot: 'morning' }) },
+    { at: process.env.SCHEDULE_AFTERNOON || '18:00', run: () => scheduledSearch({ slot: 'afternoon' }) },
     { at: process.env.SCHEDULE_DIGEST || '21:00', run: () => dailyDigest() },
   ];
   const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: tz, hour: '2-digit', minute: '2-digit', hour12: false });

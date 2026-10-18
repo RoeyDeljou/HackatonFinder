@@ -3,10 +3,14 @@
 # Vercel run was missed or failed. Needs repo secrets APP_URL and CRON_SECRET.
 name: backup-cron
 on:
+  # UTC times covering both Israel summer (UTC+3) and winter (UTC+2) time.
+  # The server ignores calls outside each job's local-time window.
   schedule:
-    - cron: '20 6 * * *'   # morning search
-    - cron: '20 13 * * *'  # afternoon search
-    - cron: '20 19 * * *'  # end-of-day digest
+    - cron: '40 7 * * *'   # morning search (10:40 summer)
+    - cron: '40 8 * * *'   # morning search (10:40 winter)
+    - cron: '40 15 * * *'  # afternoon search (18:40 summer)
+    - cron: '40 16 * * *'  # afternoon search (18:40 winter)
+    - cron: '40 19 * * *'  # end-of-day digest (22:40 summer / 21:40 winter)
   workflow_dispatch:
     inputs:
       job:
@@ -26,8 +30,8 @@ jobs:
         run: |
           if [ -z "$APP_URL" ] || [ -z "$CRON_SECRET" ]; then echo "APP_URL/CRON_SECRET not set, skipping"; exit 0; fi
           case "$SCHEDULE${INPUT_JOB}" in
-            "20 6 * * *"|search-morning) Q="job=search&slot=morning" ;;
-            "20 13 * * *"|search-afternoon) Q="job=search&slot=afternoon" ;;
+            "40 7 * * *"|"40 8 * * *"|search-morning) Q="job=search&slot=morning" ;;
+            "40 15 * * *"|"40 16 * * *"|search-afternoon) Q="job=search&slot=afternoon" ;;
             *) Q="job=digest" ;;
           esac
           curl -sS --fail-with-body -m 320 -H "Authorization: Bearer $CRON_SECRET" "${APP_URL%/}/api/cron?$Q"

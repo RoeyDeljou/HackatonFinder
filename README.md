@@ -4,7 +4,7 @@ An installable web app (PWA) that finds hackathons that are **open for registrat
 
 - Pick fields (default: **Sports, AI, Innovation**), set each to High / Med / Low priority, and add or remove fields.
 - Press **Search**. A loading screen shows each source as it's checked, then the results appear, with the date and time of the search at the top.
-- After that, the app searches **twice a day** (morning and afternoon), removes hackathons that have closed, and pushes a notification for new matches.
+- After that, the app searches **twice a day** (10:00 and 18:00 Israel time), removes hackathons that have closed, and pushes a notification for new matches.
 - If a day brings nothing new, an end-of-day notification says **"No new Hackathons were found today"**.
 - Tap any result to open its registration / info page.
 
@@ -67,15 +67,17 @@ GitHub repo → **Settings → Secrets and variables → Actions** → add:
 
 ## Schedule
 
-Defined in `vercel.json` (UTC). The defaults fit Israel time:
+Times are Israel time all year. Daylight saving is handled automatically.
 
-| Job | UTC | Israel (summer / winter) |
-|---|---|---|
-| Morning search | 05:00 | 08:00 / 07:00 |
-| Afternoon search | 12:00 | 15:00 / 14:00 |
-| End-of-day check | 18:00 | 21:00 / 20:00 |
+| Job | Israel time |
+|---|---|
+| Morning search | 10:00 |
+| Afternoon search | 18:00 |
+| End-of-day check ("No new Hackathons were found today") | 21:00 |
 
-To change the times, edit the `crons` in `vercel.json` (and `.github/workflows/backup-cron.yml`), and set `SCHEDULE_*_LABEL` variables if you want the text in the app to match. "Today" for the end-of-day message uses each phone's own time zone.
+How it works: Vercel Cron only accepts UTC times, so `vercel.json` triggers each job at both possible UTC hours (summer is UTC+3, winter is UTC+2). The server runs a job only inside its local-time window (`lib/schedule.js`), and a daily lock stops it running twice. Vercel's free plan fires cron at a random minute within the scheduled hour, so a 10:00 run happens between 10:00 and 10:59.
+
+To change the times, set `SCHEDULE_MORNING`, `SCHEDULE_AFTERNOON` and `SCHEDULE_DIGEST` (e.g. `10:00`) and, if needed, `SCHEDULE_TZ` (default `Asia/Jerusalem`). Then make sure the UTC hours in `vercel.json` and `.github/workflows/backup-cron.yml` cover the new times. "Today" for the end-of-day message uses each phone's own time zone.
 
 ## Cost: $0
 
@@ -83,9 +85,9 @@ Everything runs on free tiers:
 
 | Piece | Free allowance | This app uses |
 |---|---|---|
-| Vercel Hobby (hosting + cron) | 3 daily cron jobs, 300 s functions | 3 jobs |
+| Vercel Hobby (hosting + cron) | daily cron jobs, 300 s functions | 6 daily triggers (3 jobs × summer/winter hour) |
 | Upstash Redis | 500K commands/month | a few thousand |
-| GitHub Actions (backup + CI) | unlimited on public repos | ~3 short runs/day |
+| GitHub Actions (backup + CI) | unlimited on public repos | ~5 short runs/day |
 | Gemini API, Grounding with Google Search | free tier on `gemini-2.5-flash` (hundreds of grounded requests a day) | ~4 per search run, ~10/day |
 | Tavily | 1,000 searches/month | capped at 900/month (`TAVILY_MONTHLY_BUDGET`) |
 
