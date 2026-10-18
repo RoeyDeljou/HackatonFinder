@@ -205,3 +205,10 @@ button:disabled { opacity: .55; cursor: default; }
 .watch-btn[aria-pressed="true"] { background: color-mix(in srgb, var(--medium) 22%, var(--surface)); border-color: var(--medium); color: color-mix(in srgb, var(--medium) 65%, var(--text)); }
 .card.closed { opacity: .6; }
 .tag.closed-tag { background: var(--surface-2); color: var(--muted); border: 1px solid var(--border); }
+
+/* Participation format */
+.meta .format { font-weight: 600; }
+.meta .format-online { color: var(--ok); }
+.meta .format-inperson { color: var(--text); }
+.meta .format-hybrid { color: var(--accent); }
+.meta .format-unknown { color: var(--muted); font-weight: 500; }

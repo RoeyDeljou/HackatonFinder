@@ -298,6 +298,16 @@ function rerender() {
   window.scrollTo({ top: y });
 }
 
+/** "🌐 Online only" / "📍 In person · Munich" / "🔀 Hybrid · London or online" / unknown. */
+function formatText(it) {
+  const place = it.place || (it.location && !/^(online|other)$/i.test(it.location) ? it.location : null);
+  const format = it.format || (it.online ? 'online' : place ? 'in-person' : null);
+  if (format === 'online') return { kind: 'online', text: '🌐 Online only' };
+  if (format === 'in-person') return { kind: 'inperson', text: `📍 In person · ${place || 'location on the event page'}` };
+  if (format === 'hybrid') return { kind: 'hybrid', text: place ? `🔀 Hybrid · ${place} or online` : '🔀 Hybrid · in person or online' };
+  return { kind: 'unknown', text: '❔ Online or in person: check the event page' };
+}
+
 function card(it, prioByField) {
   const node = $('#cardTpl').content.firstElementChild.cloneNode(true);
   node.href = it.url;
@@ -324,7 +334,8 @@ function card(it, prioByField) {
   const dl = deadlineText(it);
   const add = (text, cls) => { if (!text) return; const s = document.createElement('span'); s.textContent = text; if (cls) s.className = cls; meta.append(s); };
   if (dl) add(dl.text, 'deadline' + (dl.soon ? ' soon' : ''));
-  add(it.online ? '🌐 Online' : it.location ? '📍 ' + it.location : null);
+  const fmt = formatText(it);
+  add(fmt.text, 'format format-' + fmt.kind);
   add(it.prize && /\d/.test(it.prize) ? '🏆 ' + it.prize : null);
   add(it.participants ? `👥 ${Number(it.participants).toLocaleString()}` : null);
   const tags = node.querySelector('.tags');
@@ -399,7 +410,8 @@ function sortList(list) {
 
 function matchesQuery(it, q) {
   if (!q) return true;
-  const hay = [it.title, it.organizer, it.location, it.source, ...(it.sources || []), ...(it.matched || []), ...(it.tags || []), it.description]
+  const fmt = formatText(it).text.replace(/[^\p{L}\p{N}·, ]/gu, '');
+  const hay = [it.title, it.organizer, it.location, fmt, it.source, ...(it.sources || []), ...(it.matched || []), ...(it.tags || []), it.description]
     .filter(Boolean).join(' ').toLowerCase();
   return q.toLowerCase().split(/\s+/).filter(Boolean).every((w) => hay.includes(w));
 }
