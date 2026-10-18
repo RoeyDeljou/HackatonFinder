@@ -3,16 +3,16 @@
 # Needs repo secrets APP_URL and CRON_SECRET (same value as in Vercel).
 name: web-scout
 on:
+  # Every 2 hours from 06:35 to 18:35 UTC (each run continues the query list
+  # where the last stopped), so all fields are covered before the 10:00 and
+  # 18:00 Israel-time searches.
   schedule:
-    - cron: '35 6 * * *'   # 09:35 summer / 08:35 winter
-    - cron: '35 7 * * *'   # 10:35 summer / 09:35 winter
-    - cron: '35 14 * * *'  # 17:35 summer / 16:35 winter
-    - cron: '35 15 * * *'  # 18:35 summer / 17:35 winter
+    - cron: '35 6-18/2 * * *'
   workflow_dispatch:
 jobs:
   scout:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

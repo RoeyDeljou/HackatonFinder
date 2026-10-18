@@ -118,11 +118,16 @@ test('web scout: GitHub fetches queries, posts results, next search shows them',
   assert.equal((await fetch(base + '/api/ingest')).status, 401);
   const plan = await (await fetch(base + '/api/ingest', { headers: auth })).json();
   assert.ok(plan.queries.some((q) => q.includes('sports') || q.includes('football')), 'queries come from saved fields');
-  const post = await fetch(base + '/api/ingest', { method: 'POST', headers: auth, body: JSON.stringify({ queries: 3, items: [
+  const post = await fetch(base + '/api/ingest', { method: 'POST', headers: auth, body: JSON.stringify({ queries: 3, total: plan.total, items: [
     { title: 'Microsoft + Premier League: Inside the Game: Developer Hackathon', url: 'https://events.microsoft.com/flow/microsoft/plmshackathon/registration/page/landing', organizer: 'events.microsoft.com', description: 'Microsoft and the Premier League invite developers…' },
     { title: '<b>bad</b>', url: 'javascript:alert(1)' },
   ] }) });
-  assert.deepEqual(await post.json(), { ok: true, stored: 1 });
+  assert.deepEqual(await post.json(), { ok: true, stored: 1, kept: 1, nextQuery: 3 % plan.total });
+  // Next run continues the list where this one stopped, and earlier results are kept.
+  const plan2 = await (await fetch(base + '/api/ingest', { headers: auth })).json();
+  assert.equal(plan2.queries[0], plan.queries[3]);
+  const post2 = await (await fetch(base + '/api/ingest', { method: 'POST', headers: auth, body: JSON.stringify({ queries: 1, total: plan.total, items: [{ title: 'NFL x AWS Hackathon', url: 'https://ucl.example/nfl-aws' }] }) })).json();
+  assert.equal(post2.kept, 2);
 
   mock.restore();
   mock = mockFetch({ fail: ['duckduckgo.com'] }); // live DDG blocked, like on Vercel

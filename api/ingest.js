@@ -15,8 +15,14 @@ export async function GET(request) {
   if (!cronAuthorized(request)) return error(401, 'Unauthorized');
   const profiles = await allProfiles();
   const fields = profiles.length ? unionFields(profiles) : DEFAULT_FIELDS;
-  return json({ queries: ddgQueries(fieldQueries(fields)) });
+  const all = ddgQueries(fieldQueries(fields));
+  // Rotate so each run continues where the last one stopped (search engines
+  // only allow a few queries per run).
+  const start = Number((await getStore().get('ingest:cursor')) || 0) % all.length;
+  return json({ queries: [...all.slice(start), ...all.slice(0, start)], total: all.length });
 }
+
+const KEEP_DAYS = 7;
 
 const str = (v, max) => (typeof v === 'string' ? v.trim().slice(0, max) : '');
 
@@ -44,7 +50,18 @@ export async function POST(request) {
   if (!cronAuthorized(request)) return error(401, 'Unauthorized');
   const body = await readJson(request);
   if (!body) return error(400, 'Invalid JSON');
-  const items = sanitizeIngested(body.items);
-  await getStore().set('ingest:web', { at: new Date().toISOString(), queries: Number(body.queries) || 0, items }, { ttlSec: 3 * 86400 });
-  return json({ ok: true, stored: items.length });
+  const store = getStore();
+  const now = new Date();
+  const fresh = sanitizeIngested(body.items, now);
+  // Merge with earlier runs (by URL), keeping each result for KEEP_DAYS.
+  const prev = (await store.get('ingest:web'))?.items || [];
+  const byUrl = new Map(prev.filter((it) => now - new Date(it.publishedAt) < KEEP_DAYS * 864e5).map((it) => [it.url, it]));
+  for (const it of fresh) byUrl.set(it.url, { ...(byUrl.get(it.url) || {}), ...it });
+  const items = [...byUrl.values()].slice(-600);
+  await store.set('ingest:web', { at: now.toISOString(), items }, { ttlSec: (KEEP_DAYS + 1) * 86400 });
+  const done = Math.max(0, Number(body.queries) || 0);
+  const total = Math.max(1, Number(body.total) || 1);
+  const cursor = (Number((await store.get('ingest:cursor')) || 0) + done) % total;
+  await store.set('ingest:cursor', cursor);
+  return json({ ok: true, stored: fresh.length, kept: items.length, nextQuery: cursor });
 }
