@@ -27,7 +27,17 @@ const targets = [
   ['reddit', 'https://www.reddit.com/r/hackathon/new.json?limit=5'],
   ['cerebralvalley', 'https://cerebralvalley.ai/events'],
   ['kaggle', 'https://www.kaggle.com/api/v1/competitions/list'],
-  ['devpost-rss?', 'https://devpost.com/hackathons.rss'],
+  ['devpost-p2-perpage', 'https://devpost.com/api/hackathons?status[]=open&status[]=upcoming&page=2&per_page=50'],
+  ['unstop2', 'https://unstop.in/api/public/opportunity/search-result?opportunity=hackathons&per_page=20&oppstatus=open&page=1', { headers: { referer: 'https://unstop.in/hackathons', origin: 'https://unstop.in' } }],
+  ['unstop3', 'https://unstop.in/hackathons'],
+  ['dorahacks-api3', 'https://dorahacks.io/api/hackathon-list/?page=1&page_size=20&status=ongoing'],
+  ['dorahacks-api4', 'https://dorahacks.io/api/hackathon/list?page=1&page_size=20'],
+  ['dorahacks-page', 'https://dorahacks.io/hackathon'],
+  ['luma-discover-ai', 'https://api.lu.ma/discover/get-paginated-events?query=hackathon&pagination_limit=50&slug=ai'],
+  ['gnews-sports', 'https://news.google.com/rss/search?q=%22sports+hackathon%22+when:30d&hl=en-US&gl=US&ceid=US:en'],
+  ['bing-linkedin-ai', 'https://www.bing.com/search?q=site%3Alinkedin.com%2Fposts+%22hackathon%22+%22register%22+AI&format=rss&count=50'],
+  ['mlh-2026', 'https://www.mlh.com/seasons/2026/events'],
+  ['devpost-themes', 'https://devpost.com/api/hackathons?themes[]=Machine%20Learning%2FAI&status[]=open'],
 ];
 for (const [name, url, opts = {}] of targets) {
   const t0 = Date.now();
