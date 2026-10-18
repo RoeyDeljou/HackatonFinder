@@ -81,3 +81,8 @@ test('DuckDuckGo queries put high-priority field terms first, plus company event
   assert.equal(q[2], '"premier league" hackathon 2026');
   assert.ok(q.some((x) => x.includes('site:events.microsoft.com')));
 });
+
+test('web results skip recaps and list pages', () => {
+  for (const t of ['Innovators Triumph: Insights from the 2026 SportsTech Hackathon', 'GXSLab Global Football Hackathon: Results & Highlights', 'Upcoming AI & Machine Learning Hackathons 2026', 'Find Hackathon about AI in 2026', 'AI Hackathons 2026 & 2027 — Worldwide']) assert.ok(S.isNoiseTitle(t), t);
+  for (const t of ['TUM Football Analytics Hackathon 2026', 'Registration: Inside the Game: Developer Hackathon', 'NBA Playoffs Prediction Market Hackathon']) assert.ok(!S.isNoiseTitle(t), t);
+});
