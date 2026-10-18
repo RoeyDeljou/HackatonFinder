@@ -293,7 +293,7 @@ function card(it, prioByField) {
   if (it.kind === 'announcement') {
     const t = document.createElement('span');
     t.className = 'tag unverified';
-    t.textContent = 'News announcement';
+    t.textContent = it.source === 'LinkedIn' ? 'LinkedIn post' : 'Announcement';
     tags.append(t);
   }
   return node;

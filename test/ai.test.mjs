@@ -3,6 +3,8 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
 process.env.ANTHROPIC_API_KEY = 'test-key';
+delete process.env.GEMINI_API_KEY;
+delete process.env.GOOGLE_API_KEY;
 // The SDK client keeps the fetch it saw first, so route through one swappable handler.
 let handler = null;
 globalThis.fetch = (url, init) => handler(url, init);
@@ -38,7 +40,7 @@ test('discover sends web tools + structured output, resumes pause_turn, and norm
     return new Response(body, { status: 200, headers: { 'content-type': 'text/event-stream' } });
   };
   try {
-    const items = await ai.discover({ fields: [{ name: 'Sports', priority: 'high' }, { name: 'AI', priority: 'medium' }], leads: [{ title: 'NBA announces hackathon', organizer: 'ESPN' }], knownTitles: ['Known Hack'], now: new Date('2026-10-18T12:00:00Z') });
+    const items = await ai.discover({ fields: [{ name: 'Sports', priority: 'high' }, { name: 'AI', priority: 'medium' }], leads: [{ title: 'NBA announces hackathon', organizer: 'ESPN' }], knownTitles: ['Known Hack'], now: new Date('2026-10-18T12:00:00Z'), verify: async (x) => x });
     assert.equal(bodies.length, 2, 'resumed after pause_turn');
     const b = bodies[0];
     assert.equal(b.model, 'claude-opus-5-5');
@@ -73,7 +75,7 @@ test('discover falls back to plain JSON when the API rejects the request shape',
     return new Response(sse({ stop_reason: 'end_turn' }, 'Here you go: {"hackathons":[{"title":"Fit Hack","url":"https://fit.example","organizer":"","description":"","fields":["Sports"],"registration_deadline":"","start_date":"","end_date":"","location":"","online":false,"prize":"","evidence":""}]}'), { status: 200, headers: { 'content-type': 'text/event-stream' } });
   };
   try {
-    const items = await ai.discover({ fields: [{ name: 'Sports', priority: 'high' }] });
+    const items = await ai.discover({ fields: [{ name: 'Sports', priority: 'high' }], verify: async (x) => x });
     assert.equal(items.length, 1);
     assert.ok(!('fallbacks' in bodies[1]) && !bodies[1].output_config.format);
   } finally {

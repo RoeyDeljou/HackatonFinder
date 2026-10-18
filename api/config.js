@@ -1,5 +1,5 @@
 import { json } from '../lib/http.js';
-import { aiEnabled } from '../lib/ai.js';
+import { aiEnabled, aiProvider } from '../lib/ai.js';
 import { pushConfigured } from '../lib/push.js';
 import { getStore, storageMisconfigured } from '../lib/store.js';
 import { SUGGESTED_FIELDS, DEFAULT_FIELDS } from '../lib/fields.js';
@@ -10,6 +10,7 @@ export async function GET() {
     vapidPublicKey: process.env.VAPID_PUBLIC_KEY || null,
     push: pushConfigured(),
     ai: aiEnabled(),
+    aiProvider: aiProvider(),
     storage: storageMisconfigured() ? 'missing' : getStore().kind,
     sources: [...SOURCES.map((s) => s.name), ...(aiEnabled() ? ['AI web search'] : [])],
     suggestedFields: SUGGESTED_FIELDS,

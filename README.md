@@ -21,13 +21,14 @@ An installable web app (PWA) that finds hackathons that are **open for registrat
 | Hack Club | High-school hackathons |
 | Hackster.io | Hardware / IoT contests |
 | Google News | Fresh announcements ("registration open", per-field queries) |
-| **AI web search** *(optional)* | Claude searches LinkedIn, big companies' sites, X and news for hackathons the platforms don't list, and confirms registration is open |
+| **AI web search** *(optional, free)* | Gemini with Google Search looks on LinkedIn, big companies' sites, X and news for hackathons the platforms don't list. It runs one focused search per High-priority field plus one general sweep. Every link it returns is checked, and dead ones are dropped |
+| **LinkedIn & web (Tavily)** *(optional, free)* | Searches LinkedIn posts and company pages for hackathon announcements |
 
 **Priority affects search depth.** High-priority fields get more keyword searches on Luma and News, and a larger AI search budget. Results are ranked by your highest-priority matching field first, then match strength, then size and prize. Hackathons outside your fields appear under **Other fields** as suggestions.
 
 The same hackathon found on several sites is merged into one card. Closed ones are removed on every run: anything past its deadline, or gone from its source listing for 3 days.
 
-> LinkedIn has no public API. LinkedIn posts are reached through the AI web search and news coverage, so set `ANTHROPIC_API_KEY` for the widest coverage.
+> LinkedIn has no public API. LinkedIn posts are reached through Google-grounded AI search and Tavily, both free. Set `GEMINI_API_KEY` (and optionally `TAVILY_API_KEY`) for the widest coverage.
 
 ---
 
@@ -48,7 +49,8 @@ Vercel project → **Settings → Environment Variables**:
 | `VAPID_PUBLIC_KEY` / `VAPID_PRIVATE_KEY` | Run `npx web-push generate-vapid-keys` (or `npm run vapid` in this repo) |
 | `VAPID_SUBJECT` | `mailto:your@email.com` |
 | `CRON_SECRET` | Any long random string (protects the scheduled jobs) |
-| `ANTHROPIC_API_KEY` | *Optional, recommended.* Turns on AI web search. Get one at <https://console.anthropic.com> |
+| `GEMINI_API_KEY` | *Optional, free, recommended.* Turns on AI web search. Get a key at <https://aistudio.google.com/apikey> (Google account, no card) |
+| `TAVILY_API_KEY` | *Optional, free.* Extra LinkedIn and company-announcement feed. Get a key at <https://app.tavily.com> |
 
 Then **Deployments → ⋯ → Redeploy** so the variables take effect.
 
@@ -75,10 +77,23 @@ Defined in `vercel.json` (UTC). The defaults fit Israel time:
 
 To change the times, edit the `crons` in `vercel.json` (and `.github/workflows/backup-cron.yml`), and set `SCHEDULE_*_LABEL` variables if you want the text in the app to match. "Today" for the end-of-day message uses each phone's own time zone.
 
-## Cost
+## Cost: $0
 
-Everything runs on free tiers (Vercel Hobby, Upstash free, GitHub Actions).
-AI web search is the only paid part. It uses Claude (`claude-opus-5-5` by default) with web search, about two runs a day. Expect roughly **$0.30–$1 per run**, depending on how many fields are High priority. To spend less, set `ANTHROPIC_MODEL=claude-sonnet-5-5` and/or `AI_EFFORT=low`, or set `AI_DISCOVERY=off` to disable it. Manual searches are rate-limited to one every 3 minutes per device.
+Everything runs on free tiers:
+
+| Piece | Free allowance | This app uses |
+|---|---|---|
+| Vercel Hobby (hosting + cron) | 3 daily cron jobs, 300 s functions | 3 jobs |
+| Upstash Redis | 500K commands/month | a few thousand |
+| GitHub Actions (backup + CI) | unlimited on public repos | ~3 short runs/day |
+| Gemini API, Grounding with Google Search | free tier on `gemini-2.5-flash` (hundreds of grounded requests a day) | ~4 per search run, ~10/day |
+| Tavily | 1,000 searches/month | capped at 900/month (`TAVILY_MONTHLY_BUDGET`) |
+
+Notes:
+- If Gemini's free per-minute limit is hit, the app waits and retries. If the daily limit is hit, that run simply continues without AI results.
+- On Gemini's free tier, Google may use prompts to improve its products. The prompts here only contain your field names and public hackathon titles.
+- Manual searches are rate-limited to one every 3 minutes per device.
+- **Paid alternative:** set `ANTHROPIC_API_KEY` (and `AI_PROVIDER=anthropic`) to use Claude with web search instead, at roughly $0.30–$1 per run.
 
 ## Run locally
 
@@ -102,7 +117,7 @@ api/               serverless endpoints (Vercel): config, profile, subscribe, se
 lib/sources/       one parser per hackathon site
 lib/engine.js      runs sources in parallel, merges duplicates, drops closed hackathons
 lib/fields.js      field library, keyword matching, ranking
-lib/ai.js          optional Claude web search discovery
+lib/ai.js          AI discovery: picks Gemini (free) or Claude; lib/gemini.js, lib/verify.js (link checks)
 lib/jobs.js        profiles, scheduled runs, "new" tracking, notifications, end-of-day digest
 lib/store.js       Upstash Redis (prod) / JSON file (local)
 server.js          local + self-hosted server and scheduler
