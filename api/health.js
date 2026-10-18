@@ -8,16 +8,16 @@ const clean = (k) => (has(k) ? process.env[k] !== process.env[k].trim() || /^["'
 export default async function handler(req, res) {
   const report = { node: process.version, region: process.env.VERCEL_REGION || null, checks: {}, modules: {} };
   const c = report.checks;
-  c.storage = has('KV_REST_API_URL') || has('UPSTASH_REDIS_REST_URL') ? 'set' : 'MISSING (connect Upstash Redis in Storage)';
-  const restUrl = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL || '';
-  if (restUrl && !/^https:\/\//.test(restUrl.trim())) c.storage = 'INVALID: REST URL must start with https://';
-  c.storageToken = has('KV_REST_API_TOKEN') || has('UPSTASH_REDIS_REST_TOKEN') ? 'set' : 'MISSING';
+  const { redisCreds, redisUrl } = await import('../lib/store.js');
+  c.storage = redisCreds() ? 'ok (Upstash REST)' : redisUrl() ? 'ok (REDIS_URL)' : 'MISSING (connect a Redis database in Vercel Storage)';
+  // Names only (never values) of anything that looks like database settings.
+  c.storageVariablesFound = Object.keys(process.env).filter((k) => /REDIS|KV_|UPSTASH/.test(k)).sort();
   c.vapidPublic = has('VAPID_PUBLIC_KEY') ? (/^[A-Za-z0-9_-]{80,100}$/.test(process.env.VAPID_PUBLIC_KEY.trim()) ? 'ok' : 'INVALID format') : 'MISSING';
   c.vapidPrivate = has('VAPID_PRIVATE_KEY') ? (/^[A-Za-z0-9_-]{40,50}$/.test(process.env.VAPID_PRIVATE_KEY.trim()) ? 'ok' : 'INVALID format') : 'MISSING';
   c.vapidSubject = has('VAPID_SUBJECT') ? (/^(mailto:|https:\/\/)/.test(process.env.VAPID_SUBJECT.trim()) ? 'ok' : 'INVALID: must start with mailto:') : 'MISSING';
   c.cronSecret = has('CRON_SECRET') ? 'set' : 'MISSING';
   c.gemini = has('GEMINI_API_KEY') || has('GOOGLE_API_KEY') ? 'set' : 'not set (AI search off)';
-  const spaced = ['VAPID_PUBLIC_KEY', 'VAPID_PRIVATE_KEY', 'VAPID_SUBJECT', 'GEMINI_API_KEY', 'CRON_SECRET', 'KV_REST_API_URL', 'KV_REST_API_TOKEN', 'UPSTASH_REDIS_REST_URL', 'UPSTASH_REDIS_REST_TOKEN'].filter(clean);
+  const spaced = ['VAPID_PUBLIC_KEY', 'VAPID_PRIVATE_KEY', 'VAPID_SUBJECT', 'GEMINI_API_KEY', 'CRON_SECRET', ].filter(clean);
   if (spaced.length) c.whitespaceOrQuotes = spaced;
 
   // Literal paths so Vercel bundles every module into this function.

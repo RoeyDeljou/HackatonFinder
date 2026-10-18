@@ -4,7 +4,9 @@
   "private": true,
   "description": "Installable web app that finds open hackathons and sends push notifications",
   "type": "module",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "node dev-server.js",
     "start": "node dev-server.js",
@@ -16,6 +18,7 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.135.0",
     "@upstash/redis": "^1.39.0",
+    "ioredis": "^5.11.1",
     "web-push": "^3.6.7"
   }
 }
