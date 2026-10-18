@@ -7,6 +7,7 @@ An installable web app (PWA) that finds hackathons that are **open for registrat
 - After that, the app searches **twice a day** (10:00 and 18:00 Israel time), removes hackathons that have closed, and pushes a notification for new matches.
 - If a day brings nothing new, an end-of-day notification says **"No new Hackathons were found today"**.
 - Tap any result to open its registration / info page.
+- Tap **☆ Watch** to save a hackathon to your **Watchlist**. You get a reminder ~3 days before it closes and again on its last day (sent with the 10:00 / 18:00 searches).
 
 ## Where it searches
 

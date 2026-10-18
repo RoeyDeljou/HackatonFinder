@@ -509,16 +509,25 @@ function renderResults({ aiPending = false } = {}) {
 function applyDeepLink() {
   const params = new URLSearchParams(location.search);
   const open = params.get('open');
+  if (params.get('watch') && state.results) {
+    state.filter = 'watch';
+    renderResults();
+  }
   if (params.get('new') && state.results) {
     const anyNew = [...state.results.matches, ...state.results.suggestions].some((i) => i.isNew);
     state.filter = anyNew ? 'new' : 'all';
     renderResults();
   }
   if (open) {
-    const el = document.querySelector(`.card[data-id="${CSS.escape(open)}"]`);
+    let el = document.querySelector(`.card[data-id="${CSS.escape(open)}"]`);
+    if (!el && isWatched(open)) {
+      state.filter = 'watch';
+      renderResults();
+      el = document.querySelector(`.card[data-id="${CSS.escape(open)}"]`);
+    }
     if (el) { el.classList.add('highlight'); el.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
   }
-  if (open || params.get('new')) history.replaceState(null, '', '/');
+  if (open || params.get('new') || params.get('watch')) history.replaceState(null, '', '/');
 }
 
 // ------------------------------------------------------------ boot

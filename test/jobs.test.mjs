@@ -133,3 +133,58 @@ test('watchlist: add, list, keep after closing, remove', async () => {
   r = await jobs.getResults(await jobs.getProfile(DEV));
   assert.deepEqual(r.watchlist.map((x) => x.id), [defi.id]);
 });
+
+test('watchlist reminders: 3 days before and on the last day, each once', async () => {
+  await setup();
+  listing = [hack('World Sports Tech Hack', '2026-11-30T00:00:00Z'), hack('Generative AI Agents Jam', '2026-11-15T00:00:00Z'), hack('NBA Fan Hackathon', '2026-11-16T12:00:00Z')];
+  await jobs.runSearch({ profiles: [await jobs.getProfile(DEV)], collectOpts, now: t('2026-11-01T06:00:00Z') });
+  const r = await jobs.getResults(await jobs.getProfile(DEV));
+  const id = (title) => r.matches.find((m) => m.title === title).id;
+  await jobs.setWatched(await jobs.getProfile(DEV), id('Generative AI Agents Jam'), true);
+  await jobs.setWatched(await jobs.getProfile(DEV), id('World Sports Tech Hack'), true);
+
+  // Nov 10: 5 days left → nothing yet.
+  await jobs.watchReminders({ now: t('2026-11-10T07:00:00Z') });
+  assert.equal(pushes.length, 0);
+  // Nov 12 07:00: ~2.7 days left → "3 days" reminder.
+  await jobs.watchReminders({ now: t('2026-11-12T07:00:00Z') });
+  assert.equal(pushes.length, 1);
+  assert.equal(pushes[0].payload.title, '⏰ Watchlist: closing soon');
+  assert.equal(pushes[0].payload.body, 'Generative AI Agents Jam closes in 3 days');
+  assert.match(pushes[0].payload.url, /^\/\?open=/);
+  // Same window again → not repeated.
+  await jobs.watchReminders({ now: t('2026-11-12T15:00:00Z') });
+  assert.equal(pushes.length, 1);
+  // Nov 14 07:00: 17 h left → last-day reminder, once.
+  await jobs.watchReminders({ now: t('2026-11-14T07:00:00Z') });
+  await jobs.watchReminders({ now: t('2026-11-14T15:00:00Z') });
+  assert.equal(pushes.length, 2);
+  assert.equal(pushes[1].payload.body, 'Generative AI Agents Jam closes tomorrow');
+  // Unwatched items never remind (NBA closes Nov 16).
+  assert.ok(!pushes.some((p) => p.payload.body.includes('NBA')));
+});
+
+test('watchlist reminders: watched late, inside the last day → one reminder, grouped when several', async () => {
+  await setup();
+  listing = [hack('Generative AI Agents Jam', '2026-11-15T00:00:00Z'), hack('Sports Data Jam', '2026-11-15T10:00:00Z')];
+  await jobs.runSearch({ profiles: [await jobs.getProfile(DEV)], collectOpts, now: t('2026-11-14T06:00:00Z') });
+  const r = await jobs.getResults(await jobs.getProfile(DEV));
+  for (const m of r.matches) await jobs.setWatched(await jobs.getProfile(DEV), m.id, true);
+  await jobs.watchReminders({ now: t('2026-11-14T07:00:00Z') });
+  assert.equal(pushes.length, 1);
+  assert.equal(pushes[0].payload.title, '⏰ 2 watchlist hackathons close soon');
+  assert.equal(pushes[0].payload.url, '/?watch=1');
+  await jobs.watchReminders({ now: t('2026-11-14T15:00:00Z') });
+  assert.equal(pushes.length, 1, 'the earlier "3 days" stage is not sent afterwards');
+});
+
+test('scheduled search also sends watchlist reminders', async () => {
+  await setup();
+  listing = [hack('Generative AI Agents Jam', '2026-11-15T00:00:00Z')];
+  await jobs.runSearch({ profiles: [await jobs.getProfile(DEV)], collectOpts, now: t('2026-11-01T06:00:00Z') });
+  const r = await jobs.getResults(await jobs.getProfile(DEV));
+  await jobs.setWatched(await jobs.getProfile(DEV), r.matches[0].id, true);
+  const res = await jobs.scheduledSearch({ slot: 'morning', collectOpts, now: t('2026-11-14T07:00:00Z') });
+  assert.equal(res.watchReminders[DEV].sent, 1);
+  assert.ok(pushes.some((p) => p.payload.tag === 'hf-watch'));
+});
