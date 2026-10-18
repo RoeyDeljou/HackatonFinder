@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="https://cdn.hackerearth.com/static/hackerearth/images/logo/HE_identity.png" type="image/x-icon">
+<title>HackerEarth Guardian</title>
+<style>
+    body {
+        font-family: "Consolas", "Menlo", "Monaco", system-ui;
+        background-color: #f4f4f4;
+        text-align: center;
+        padding-top: 100px;
+    }
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>ANONYMOUS IP</h2>
+    <p>We kindly request that you disconnect any virtual private network (VPN) connections and refresh the page. This is necessary to ensure the integrity and security of our platform.</p>
+</div>
+  <p style="text-align:center; font-size:13px;">**<span style="color: red; font-weight: bold"> Recruiters will be able to accces this with</span> <a href="https://hackerearth.com/recruiters/login/">authentication</a>.<br>** If you have any queries mail us - <a href="mailto:support@hackerearth.com">support@hackerearth.com</a>.</p>
+</body>
+</html>
