@@ -16,7 +16,7 @@ test('Gemini is preferred over Claude when both keys are set (it is free)', () =
 });
 
 test('one focused call per high-priority field plus a general sweep', () => {
-  assert.deepEqual(planCalls([{ name: 'Sports', priority: 'high' }, { name: 'AI', priority: 'high' }, { name: 'Fintech', priority: 'low' }]), ['Sports', 'AI', null]);
+  assert.deepEqual(planCalls([{ name: 'AI', priority: 'high' }, { name: 'Fintech', priority: 'low' }]).map((c) => c.field), ['AI', null]);
 });
 
 test('discover: grounded calls, JSON in markdown fences, focus field tagging, 429 retry', async () => {
@@ -37,7 +37,7 @@ test('discover: grounded calls, JSON in markdown fences, focus field tagging, 42
   try {
     const items = await ai.discover({ fields: [{ name: 'Sports', priority: 'high' }, { name: 'Innovation', priority: 'medium' }], now: new Date('2026-10-18T12:00:00Z'), verify: async (x) => x });
     assert.deepEqual(bodies[0].tools, [{ google_search: {} }]);
-    assert.deepEqual(items.map((i) => i.title).sort(), ['FIFA Football Data Hackathon', 'LinkedIn Corp Innovation Hack']);
+    assert.deepEqual([...new Set(items.map((i) => i.title))].sort(), ['FIFA Football Data Hackathon', 'LinkedIn Corp Innovation Hack']); // duplicates are merged later by the engine
     const fifa = items.find((i) => i.title.startsWith('FIFA'));
     assert.deepEqual(fifa.aiFields, ['Sports'], 'focused call tags its field');
     assert.equal(fifa.deadline, '2026-11-30T23:59:59.000Z');
@@ -72,4 +72,13 @@ test('verifyItems drops dead links, keeps bot-blocked ones, and unwraps redirect
   const out = await verifyItems(items, { check });
   assert.deepEqual(out.map((i) => i.title), ['Blocked', 'Redirect']);
   assert.equal(out[1].url, 'https://real.example/hackathon');
+});
+
+test('Sports gets one AI sub-search per sub-topic (football, US leagues, other sports)', () => {
+  const calls = planCalls([{ name: 'Sports', priority: 'high' }, { name: 'AI', priority: 'high' }]);
+  const sports = calls.filter((c) => c.field === 'Sports');
+  assert.equal(sports.length, 3);
+  assert.match(sports[0].focus, /Premier League/);
+  assert.equal(calls.filter((c) => c.field === 'AI').length, 1);
+  assert.equal(calls.at(-1).focus, null, 'general sweep last');
 });

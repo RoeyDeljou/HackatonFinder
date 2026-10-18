@@ -60,3 +60,11 @@ test('relevance ranks high-priority matches above low', () => {
   const b = relevance(it('x'), [{ name: 'Fintech', priority: 'low', score: 9 }]);
   assert.ok(a > b);
 });
+
+test('Sports covers leagues, clubs and individual sports without false positives', () => {
+  const f = [{ name: 'Sports', priority: 'high' }];
+  const yes = ['Microsoft x Premier League Hackathon', 'EPL Data Hack', 'Real Madrid innovation challenge', 'Padel tech hackathon', 'NBA hack', 'EuroLeague basketball data jam', 'Formula 1 strategy hackathon', 'Maccabi Tel Aviv fan app hack', 'FIFA World Cup hackathon', 'Wimbledon AI challenge'];
+  for (const t of yes) assert.equal(matchFields(it(t), f).length, 1, t);
+  const no = ['Agents League Hackathon', 'Infineon Boss Battle in the AI Arena', 'Improve F1 score with LLMs', 'AJAX web performance hack', 'Code Warriors Hackathon', 'AI coach for students', 'Matchmaking app jam'];
+  for (const t of no) assert.equal(matchFields(it(t), f).length, 0, t);
+});
