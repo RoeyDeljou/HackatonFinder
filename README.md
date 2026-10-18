@@ -21,6 +21,7 @@ An installable web app (PWA) that finds hackathons that are **open for registrat
 | Hack Club | High-school hackathons |
 | Hackster.io | Hardware / IoT contests |
 | Google News | Fresh announcements ("registration open", per-field queries) |
+| **Web search (DuckDuckGo)** *(free, no key)* | Company-hosted hackathons (e.g. events.microsoft.com) and LinkedIn posts. Runs from GitHub Actions (`web-scout` workflow) because search engines block Vercel's servers |
 | **AI web search** *(optional, free)* | Gemini with Google Search looks on LinkedIn, big companies' sites, X and news for hackathons the platforms don't list. It runs one focused search per High-priority field plus one general sweep. Every link it returns is checked, and dead ones are dropped |
 | **LinkedIn & web (Tavily)** *(optional, free)* | Searches LinkedIn posts and company pages for hackathon announcements |
 
@@ -58,7 +59,18 @@ Then **Deployments → ⋯ → Redeploy** so the variables take effect.
 - **iPhone (iOS 16.4+):** open the site in **Safari** → Share → **Add to Home Screen** → open it **from the home screen** → press **Search hackathons** and allow notifications. On iPhone, push only works from the home-screen app.
 - **Android:** open in Chrome → menu → **Install app** (or Add to Home screen) → allow notifications.
 
-### 5. (Recommended) Backup scheduler
+### 5. Turn on the free web search (GitHub)
+DuckDuckGo blocks searches from Vercel's servers, so the `web-scout` workflow runs them from GitHub (free) about 25 minutes before each 10:00 and 18:00 search, and sends the results to the app. This is how hackathons that live only on company sites (like Microsoft + Premier League) are found.
+
+GitHub repo → **Settings → Secrets and variables → Actions → New repository secret**:
+- `APP_URL` = your Vercel URL, e.g. `https://hackaton-finder.vercel.app`
+- `CRON_SECRET` = the same value as in Vercel
+
+To run it right away: **Actions → web-scout → Run workflow**, then tap **↻ Search** in the app.
+
+> About Gemini: Google closed `gemini-2.5-flash` to new API keys, and on current Gemini models Google Search is a paid feature. The app tries the current models automatically. If your key's free tier has no Search, the "Sources checked" line says so, and the free web search covers it.
+
+### 6. (Recommended) Backup scheduler
 Vercel's free cron fires at a random minute within the hour, and very rarely skips. The included GitHub Action calls the same jobs about an hour later as a safety net. The server skips any slot that already ran, so nothing is ever sent twice.
 
 GitHub repo → **Settings → Secrets and variables → Actions** → add:

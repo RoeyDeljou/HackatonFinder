@@ -112,3 +112,26 @@ test('search keeps working when some sources are down', async () => {
   const done = events.find((e) => e.type === 'done');
   assert.ok(done.results.matches.length > 5);
 });
+
+test('web scout: GitHub fetches queries, posts results, next search shows them', async () => {
+  const auth = { authorization: 'Bearer test-secret', 'content-type': 'application/json' };
+  assert.equal((await fetch(base + '/api/ingest')).status, 401);
+  const plan = await (await fetch(base + '/api/ingest', { headers: auth })).json();
+  assert.ok(plan.queries.some((q) => q.includes('sports') || q.includes('football')), 'queries come from saved fields');
+  const post = await fetch(base + '/api/ingest', { method: 'POST', headers: auth, body: JSON.stringify({ queries: 3, items: [
+    { title: 'Microsoft + Premier League: Inside the Game: Developer Hackathon', url: 'https://events.microsoft.com/flow/microsoft/plmshackathon/registration/page/landing', organizer: 'events.microsoft.com', description: 'Microsoft and the Premier League invite developers…' },
+    { title: '<b>bad</b>', url: 'javascript:alert(1)' },
+  ] }) });
+  assert.deepEqual(await post.json(), { ok: true, stored: 1 });
+
+  mock.restore();
+  mock = mockFetch({ fail: ['duckduckgo.com'] }); // live DDG blocked, like on Vercel
+  const dev3 = { ...h, 'x-device-id': 'scoutDevice_1234567890ab' };
+  await fetch(base + '/api/profile', { method: 'PUT', headers: dev3, body: JSON.stringify({ fields: [{ name: 'Sports', priority: 'high' }] }) });
+  const events = (await (await fetch(base + '/api/search', { method: 'POST', headers: dev3, body: '{}' })).text()).trim().split('\n').map((l) => JSON.parse(l));
+  assert.ok(events.some((e) => e.id === 'web' && e.status === 'done'));
+  const done = events.find((e) => e.type === 'done');
+  const pl = done.results.matches.find((m) => m.url.includes('plmshackathon'));
+  assert.ok(pl, 'ingested hackathon appears in results');
+  assert.deepEqual(pl.matched, ['Sports']);
+});

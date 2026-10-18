@@ -51,7 +51,7 @@ test('discover surfaces a real error when every call fails (e.g. bad key)', asyn
   const real = globalThis.fetch;
   globalThis.fetch = async () => new Response('{"error":{"message":"API key not valid"}}', { status: 400 });
   try {
-    await assert.rejects(ai.discover({ fields: [{ name: 'AI', priority: 'high' }], verify: async (x) => x }), /Gemini HTTP 400/);
+    await assert.rejects(ai.discover({ fields: [{ name: 'AI', priority: 'high' }], verify: async (x) => x }), /HTTP 400/);
   } finally {
     globalThis.fetch = real;
   }
@@ -81,4 +81,43 @@ test('Sports gets one AI sub-search per sub-topic (football, US leagues, other s
   assert.match(sports[0].focus, /Premier League/);
   assert.equal(calls.filter((c) => c.field === 'AI').length, 1);
   assert.equal(calls.at(-1).focus, null, 'general sweep last');
+});
+
+test('retired models (404 "no longer available") fall through to the next working model', async () => {
+  const { _resetModel } = await import('../lib/gemini.js');
+  _resetModel();
+  const real = globalThis.fetch;
+  const tried = [];
+  globalThis.fetch = async (url) => {
+    const model = String(url).match(/models\/([^:]+):/)[1];
+    tried.push(model);
+    if (model === 'gemini-2.5-flash') return new Response('{"error":{"code":404,"message":"This model models/gemini-2.5-flash is no longer available to new users."}}', { status: 404 });
+    return reply(JSON.stringify({ hackathons: [hj('Premier League Hack', 'https://pl.example/hack')] }));
+  };
+  try {
+    const items = await ai.discover({ fields: [{ name: 'Fintech', priority: 'low' }], verify: async (x) => x });
+    assert.equal(items[0].title, 'Premier League Hack');
+    assert.deepEqual(tried.slice(0, 2), ['gemini-2.5-flash', 'gemini-flash-latest']);
+    tried.length = 0;
+    await ai.discover({ fields: [{ name: 'Fintech', priority: 'low' }], verify: async (x) => x });
+    assert.equal(tried[0], 'gemini-flash-latest', 'remembers the working model');
+  } finally {
+    globalThis.fetch = real;
+    _resetModel();
+  }
+});
+
+test('free tier without Google Search gives a plain explanation', async () => {
+  const { _resetModel } = await import('../lib/gemini.js');
+  _resetModel();
+  const real = globalThis.fetch;
+  globalThis.fetch = async (url) => String(url).includes('gemini-2.5-flash')
+    ? new Response('{"error":{"message":"no longer available to new users"}}', { status: 404 })
+    : new Response('{"error":{"message":"Grounding with Google Search is not available on the free tier"}}', { status: 400 });
+  try {
+    await assert.rejects(ai.discover({ fields: [{ name: 'AI', priority: 'low' }], verify: async (x) => x }), /free tier doesn't include Google Search/);
+  } finally {
+    globalThis.fetch = real;
+    _resetModel();
+  }
 });

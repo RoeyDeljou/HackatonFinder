@@ -29,6 +29,7 @@ export default async function handler(req, res) {
     subscribe: () => import('./subscribe.js'),
     cron: () => import('./cron.js'),
     'test-push': () => import('./test-push.js'),
+    ingest: () => import('./ingest.js'),
   };
   for (const [name, load] of Object.entries(loaders)) {
     try {
