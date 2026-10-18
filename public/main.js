@@ -7,6 +7,7 @@ const state = {
   fields: [],
   results: null,
   filter: 'all',
+  query: '',
   searching: false,
 };
 
@@ -299,6 +300,34 @@ function card(it, prioByField) {
   return node;
 }
 
+function matchesQuery(it, q) {
+  if (!q) return true;
+  const hay = [it.title, it.organizer, it.location, it.source, ...(it.sources || []), ...(it.matched || []), ...(it.tags || []), it.description]
+    .filter(Boolean).join(' ').toLowerCase();
+  return q.toLowerCase().split(/\s+/).filter(Boolean).every((w) => hay.includes(w));
+}
+
+function renderSourcesInfo(r) {
+  const box = $('#sourcesBox');
+  const list = r.sources || [];
+  box.classList.toggle('hidden', !list.length);
+  if (!list.length) return;
+  const failed = list.filter((s) => !s.ok);
+  const ai = list.find((s) => s.id === 'ai');
+  let summary = `Checked ${list.length} sources`;
+  if (ai) summary += ai.ok ? ` · AI search found ${ai.count}` : ' · AI search failed';
+  if (failed.length && !(failed.length === 1 && ai && !ai.ok)) summary += ` · ${failed.length} unavailable`;
+  $('#sourcesSummary').textContent = summary;
+  const ul = $('#sourcesDetail');
+  ul.innerHTML = '';
+  for (const s of list) {
+    const li = document.createElement('li');
+    li.textContent = s.ok ? `✓ ${s.name}: ${s.count}` : `✗ ${s.name}: ${s.error || 'unavailable'}`;
+    if (!s.ok) li.className = 'bad';
+    ul.append(li);
+  }
+}
+
 function renderResults({ aiPending = false } = {}) {
   const r = state.results;
   if (!r) return;
@@ -307,6 +336,7 @@ function renderResults({ aiPending = false } = {}) {
   $('#nextRun').textContent = sch ? `Auto-search daily at ${sch.morning} and ${sch.afternoon} (${sch.tz})` : '';
   $('#aiBanner').classList.toggle('hidden', !aiPending);
   renderNotice();
+  renderSourcesInfo(r);
 
   const fields = r.fields || state.fields;
   const prioByField = Object.fromEntries(fields.map((f) => [f.name.toLowerCase(), f.priority]));
@@ -342,13 +372,19 @@ function renderResults({ aiPending = false } = {}) {
   else if (state.filter === 'new') list = [...r.matches, ...r.suggestions].filter((i) => i.isNew);
   else if (state.filter.startsWith('f:')) list = r.matches.filter((i) => i.matched.includes(state.filter.slice(2)));
   else list = r.matches;
+  const q = state.query.trim();
+  // On "Your fields", a search also looks through every other-field suggestion.
+  if (q) list = (state.filter === 'all' ? [...r.matches, ...r.suggestions] : list).filter((it) => matchesQuery(it, q));
+  const info = $('#queryInfo');
+  info.classList.toggle('hidden', !q);
+  if (q) info.textContent = `${list.length} result${list.length === 1 ? '' : 's'} for “${q}”`;
 
   const frag = document.createDocumentFragment();
   list.forEach((it) => frag.append(card(it, prioByField)));
   box.append(frag);
 
   // On the main tab, follow matches with suggestions from other fields.
-  if (state.filter === 'all' && r.suggestions.length) {
+  if (!q && state.filter === 'all' && r.suggestions.length) {
     const h = document.createElement('div');
     h.className = 'group-title';
     h.textContent = 'Suggested from other fields';
@@ -356,10 +392,12 @@ function renderResults({ aiPending = false } = {}) {
     r.suggestions.slice(0, 12).forEach((it) => box.append(card(it, prioByField)));
   }
   const empty = $('#emptyState');
-  empty.textContent = state.filter.startsWith('f:')
+  empty.textContent = q
+    ? `Nothing matches “${q}” right now. Try a shorter word, or another tab.`
+    : state.filter.startsWith('f:')
     ? `No open ${state.filter.slice(2)} hackathons right now. This field is checked every morning and afternoon, and you'll get a notification when one appears.`
     : 'No open hackathons match these filters right now. New ones are checked every morning and afternoon.';
-  empty.classList.toggle('hidden', list.length > 0 || (state.filter === 'all' && r.suggestions.length > 0));
+  empty.classList.toggle('hidden', list.length > 0 || (!q && state.filter === 'all' && r.suggestions.length > 0));
 }
 
 function applyDeepLink() {
@@ -426,6 +464,11 @@ $('#addForm').addEventListener('submit', (e) => {
   $('#addInput').value = '';
 });
 $('#searchBtn').addEventListener('click', runSearch);
+$('#queryInput').addEventListener('input', (e) => {
+  state.query = e.target.value;
+  renderResults({ aiPending: !$('#aiBanner').classList.contains('hidden') });
+});
+$('#queryInput').addEventListener('keydown', (e) => { if (e.key === 'Enter') e.target.blur(); });
 $('#refreshBtn').addEventListener('click', runSearch);
 $('#editBtn').addEventListener('click', () => {
   if (state.results?.fields) state.fields = state.results.fields.map((f) => ({ ...f }));

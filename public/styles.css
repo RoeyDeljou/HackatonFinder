@@ -170,3 +170,17 @@ button:disabled { opacity: .55; cursor: default; }
   .field .remove { grid-row: 1; grid-column: 2; }
   .field .prio { grid-column: 1 / -1; justify-self: start; }
 }
+
+/* Search + sources */
+.search-row { margin-top: 14px; }
+.search-row input {
+  width: 100%; font: inherit; padding: 11px 14px 11px 38px; border-radius: 12px;
+  border: 1px solid var(--border); background: var(--surface) no-repeat 12px 50% / 16px 16px; color: var(--text);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238a90ad' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E");
+}
+.search-row input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+#queryInfo { margin: 0 2px 6px; }
+.sources-box { margin-top: 10px; font-size: 13px; color: var(--muted); }
+.sources-box summary { cursor: pointer; }
+.sources-box ul { list-style: none; padding: 6px 0 0; margin: 0; display: grid; gap: 3px; }
+.sources-box .bad { color: var(--high); }

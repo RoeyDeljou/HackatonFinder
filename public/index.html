@@ -65,7 +65,12 @@
       </div>
       <div id="aiBanner" class="banner hidden"><span class="spinner" aria-hidden="true"></span> Still searching LinkedIn, company sites and news…</div>
       <div id="notifyCard2" class="notice hidden"></div>
+      <details id="sourcesBox" class="sources-box hidden"><summary id="sourcesSummary"></summary><ul id="sourcesDetail"></ul></details>
+      <div class="search-row">
+        <input id="queryInput" type="search" placeholder="Search by name, company, place…" aria-label="Search results" autocomplete="off" enterkeyhint="search">
+      </div>
       <div id="filters" class="chips filters" role="tablist" aria-label="Filter results"></div>
+      <p id="queryInfo" class="muted small hidden"></p>
       <div id="results"></div>
       <p id="emptyState" class="muted center hidden">No open hackathons match these filters right now. New ones are checked every morning and afternoon.</p>
     </section>

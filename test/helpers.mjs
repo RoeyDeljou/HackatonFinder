@@ -29,6 +29,7 @@ export function mockFetch({ fail = [] } = {}) {
     if (host === 'lablab.ai') return respond(fixture('lablab.html'), 'text/html');
     if (host === 'cerebralvalley.ai') return respond(fixture('cerebralvalley.html'), 'text/html');
     if (host === 'www.hackster.io') return respond(fixture('hackster.html'), 'text/html');
+    if (host === 'html.duckduckgo.com') return respond(fixture('ddg.html'), 'text/html');
     if (host === 'news.google.com') return respond(fixture('gnews.xml'), 'application/xml');
     if (host === '127.0.0.1' || host === 'localhost') return real(input, init);
     throw new TypeError(`unexpected fetch ${url}`);

@@ -64,3 +64,20 @@ test('Google News: hackathon headlines become announcements', () => {
   assert.ok(!items.some((i) => i.title.endsWith('GSA (.gov)')), 'publisher suffix removed');
   assert.ok(items.some((i) => i.title.startsWith('Model Context Protocol Server')));
 });
+
+test('DuckDuckGo: finds company-hosted hackathons and skips video/code/job pages', () => {
+  const items = S.parseDdg(fixture('ddg.html'), NOW);
+  const ms = items.find((i) => i.url.startsWith('https://events.microsoft.com/flow/microsoft/plmshackathon'));
+  assert.ok(ms, 'Microsoft + Premier League registration page found');
+  assert.equal(ms.title, 'Microsoft + Premier League: Inside the Game: Developer Hackathon');
+  assert.equal(ms.kind, 'announcement');
+  assert.ok(items.some((i) => i.url.includes('developer.microsoft.com/en-us/reactor/series')));
+  assert.ok(!items.some((i) => /youtube|github\.com|linkedin\.com\/jobs/.test(i.url)));
+  items.forEach(valid);
+});
+
+test('DuckDuckGo queries put high-priority field terms first, plus company event sites', () => {
+  const q = S.ddgQueries(['sports', 'football', 'premier league'], NOW);
+  assert.equal(q[2], '"premier league" hackathon 2026');
+  assert.ok(q.some((x) => x.includes('site:events.microsoft.com')));
+});

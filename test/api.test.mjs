@@ -62,7 +62,7 @@ test('full flow: save fields → streamed first search → results → cron → 
   assert.match(res.headers.get('content-type'), /ndjson/);
   const events = (await res.text()).trim().split('\n').map((l) => JSON.parse(l));
   const sourceDone = events.filter((e) => e.type === 'source' && e.status === 'done').map((e) => e.id);
-  for (const id of ['devpost', 'devfolio', 'mlh', 'luma', 'lablab', 'cerebralvalley', 'hackclub', 'hackster', 'news']) assert.ok(sourceDone.includes(id), `${id} done`);
+  for (const id of ['devpost', 'devfolio', 'mlh', 'luma', 'lablab', 'cerebralvalley', 'hackclub', 'hackster', 'news', 'web']) assert.ok(sourceDone.includes(id), `${id} done`);
   const done = events.find((e) => e.type === 'done');
   assert.ok(done, 'done event');
   const { matches, suggestions, searchedAt } = done.results;
@@ -71,6 +71,7 @@ test('full flow: save fields → streamed first search → results → cron → 
   assert.ok(suggestions.length >= 5, `suggestions: ${suggestions.length}`);
   assert.ok(matches.every((m) => m.matched.length && m.url && m.id));
   assert.ok(matches.some((m) => m.matched.includes('AI')));
+  assert.ok(matches.some((m) => m.title.startsWith('Microsoft + Premier League') && m.matched.includes('Sports')), 'company-hosted sports hackathon found via web search');
   // Every listed hackathon is still open.
   const now = Date.now();
   for (const m of [...matches, ...suggestions]) {
