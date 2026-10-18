@@ -9,7 +9,7 @@ delete process.env.ANTHROPIC_API_KEY;
 delete process.env.UPSTASH_REDIS_REST_URL;
 delete process.env.KV_REST_API_URL;
 
-const { createServer } = await import('../server.js');
+const { createServer } = await import('../dev-server.js');
 const { setPushSender } = await import('../lib/push.js');
 
 let server, base, mock;
@@ -27,7 +27,7 @@ before(async () => {
 after(() => { server.close(); mock.restore(); });
 
 test('static app shell and PWA files are served', async () => {
-  for (const [p, type] of [['/', 'text/html'], ['/app.js', 'javascript'], ['/sw.js', 'javascript'], ['/manifest.webmanifest', 'manifest'], ['/icons/icon-192.png', 'image/png']]) {
+  for (const [p, type] of [['/', 'text/html'], ['/main.js', 'javascript'], ['/sw.js', 'javascript'], ['/manifest.webmanifest', 'manifest'], ['/icons/icon-192.png', 'image/png']]) {
     const r = await fetch(base + p);
     assert.equal(r.status, 200, p);
     assert.match(r.headers.get('content-type'), new RegExp(type), p);

@@ -6,8 +6,8 @@
   "type": "module",
   "engines": { "node": ">=20" },
   "scripts": {
-    "dev": "node server.js",
-    "start": "node server.js",
+    "dev": "node dev-server.js",
+    "start": "node dev-server.js",
     "test": "node --test test/*.test.mjs",
     "vapid": "node scripts/gen-vapid.mjs",
     "search": "node scripts/run-search.mjs",

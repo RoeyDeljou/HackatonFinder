@@ -109,12 +109,12 @@ npm run search            # live search from the terminal
 
 Push notifications need HTTPS (localhost is allowed in desktop browsers).
 
-**Self-hosting without Vercel** (VPS, Docker, Raspberry Pi): run `SCHEDULER=on node server.js`. The server then runs the three daily jobs itself (`SCHEDULE_TZ`, `SCHEDULE_MORNING`, `SCHEDULE_AFTERNOON`, `SCHEDULE_DIGEST`). It stores data in `.data/db.json` unless Upstash variables are set.
+**Self-hosting without Vercel** (VPS, Docker, Raspberry Pi): run `SCHEDULER=on node dev-server.js`. The server then runs the three daily jobs itself (`SCHEDULE_TZ`, `SCHEDULE_MORNING`, `SCHEDULE_AFTERNOON`, `SCHEDULE_DIGEST`). It stores data in `.data/db.json` unless Upstash variables are set.
 
 ## Project layout
 
 ```
-public/            the PWA: index.html, app.js, styles.css, sw.js (push + offline), manifest, icons
+public/            the PWA: index.html, main.js, styles.css, sw.js (push + offline), manifest, icons
 api/               serverless endpoints (Vercel): config, profile, subscribe, search (streams progress), hackathons, test-push, cron
 lib/sources/       one parser per hackathon site
 lib/engine.js      runs sources in parallel, merges duplicates, drops closed hackathons
@@ -122,7 +122,7 @@ lib/fields.js      field library, keyword matching, ranking
 lib/ai.js          AI discovery: picks Gemini (free) or Claude; lib/gemini.js, lib/verify.js (link checks)
 lib/jobs.js        profiles, scheduled runs, "new" tracking, notifications, end-of-day digest
 lib/store.js       Upstash Redis (prod) / JSON file (local)
-server.js          local + self-hosted server and scheduler
+dev-server.js      local + self-hosted server and scheduler
 test/              tests with real saved responses from every source
 ```
 

@@ -2,7 +2,7 @@
  * Local / self-hosted server. Serves public/ and routes /api/<name> to the
  * same handlers Vercel runs. With SCHEDULER=on it also runs the daily jobs
  * itself (for hosts without Vercel Cron, e.g. a VPS or Docker).
- *   node server.js            → http://localhost:3000
+ *   node dev-server.js            → http://localhost:3000
  */
 import http from 'node:http';
 import fs from 'node:fs';
