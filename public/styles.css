@@ -172,7 +172,8 @@ button:disabled { opacity: .55; cursor: default; }
 }
 
 /* Search + sources */
-.search-row { margin-top: 14px; }
+.search-row { margin-top: 14px; display: flex; gap: 8px; align-items: stretch; }
+.search-row input { flex: 1; min-width: 0; }
 .search-row input {
   width: 100%; font: inherit; padding: 11px 14px 11px 38px; border-radius: 12px;
   border: 1px solid var(--border); background: var(--surface) no-repeat 12px 50% / 16px 16px; color: var(--text);
@@ -184,3 +185,13 @@ button:disabled { opacity: .55; cursor: default; }
 .sources-box summary { cursor: pointer; }
 .sources-box ul { list-style: none; padding: 6px 0 0; margin: 0; display: grid; gap: 3px; }
 .sources-box .bad { color: var(--high); }
+
+.sort-btn {
+  position: relative; display: inline-flex; align-items: center; gap: 6px; flex: none;
+  padding: 0 12px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); color: var(--text);
+  font-size: 13px; font-weight: 650; cursor: pointer;
+}
+.sort-btn.active { border-color: var(--accent); color: var(--accent); }
+.sort-btn select { position: absolute; inset: 0; opacity: 0; width: 100%; height: 100%; cursor: pointer; font-size: 16px; }
+.sort-label:empty { display: none; }
+@media (max-width: 380px) { .sort-label { display: none; } }

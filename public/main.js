@@ -8,6 +8,7 @@ const state = {
   results: null,
   filter: 'all',
   query: '',
+  sort: (() => { try { return localStorage.getItem('hf-sort') || 'best'; } catch { return 'best'; } })(),
   searching: false,
 };
 
@@ -300,6 +301,54 @@ function card(it, prioByField) {
   return node;
 }
 
+// ------------------------------------------------------------ sorting
+// Rough rates so prizes in different currencies can be compared.
+const FX = { $: 1, usd: 1, '€': 1.1, eur: 1.1, '£': 1.27, gbp: 1.27, '₹': 0.012, inr: 0.012, rs: 0.012, '¥': 0.007, jpy: 0.007, cad: 0.73, aud: 0.66, '₪': 0.27, ils: 0.27, nis: 0.27 };
+
+/** "$138,000" → 138000, "€10k" → 11000, "₹1,00,000" → 1200, "$1.5M in prizes" → 1500000. */
+export function prizeValue(prize) {
+  if (!prize) return null;
+  const s = String(prize).toLowerCase().replace(/\s+/g, ' ');
+  const m = s.match(/(\$|€|£|₹|¥|₪|usd|eur|gbp|inr|rs\.?|jpy|cad|aud|ils|nis)?\s*([\d][\d,.]*)\s*(k|m|million|thousand)?\b\s*(usd|eur|gbp|inr|jpy|cad|aud|ils|nis)?/);
+  if (!m) return null;
+  let n = parseFloat(m[2].replace(/,/g, ''));
+  if (!Number.isFinite(n)) return null;
+  if (m[3] === 'k' || m[3] === 'thousand') n *= 1e3;
+  if (m[3] === 'm' || m[3] === 'million') n *= 1e6;
+  const cur = (m[1] || m[4] || '$').replace('.', '');
+  return n * (FX[cur] ?? 1);
+}
+
+const closingTime = (it) => {
+  const iso = it.deadline || it.endDate || it.startDate;
+  const t = iso ? new Date(iso).getTime() : NaN;
+  return Number.isFinite(t) ? t : null;
+};
+
+const SORTS = {
+  best: null, // server order: priority of matched field, then relevance
+  closing: (it) => closingTime(it),
+  name: (it) => (it.title || '').toLocaleLowerCase(),
+  prize: (it) => { const v = prizeValue(it.prize); return v == null ? null : -v; },
+  participants: (it) => (it.participants ? -it.participants : null),
+};
+const SORT_LABELS = { best: '', closing: 'Closing', name: 'A–Z', prize: 'Prize', participants: 'People' };
+
+/** Sorts a copy; items without a value for the chosen sort go last, in their previous order. */
+function sortList(list) {
+  const key = SORTS[state.sort];
+  if (!key) return list;
+  const withKey = list.map((it, i) => ({ it, i, k: key(it) }));
+  withKey.sort((a, b) => {
+    if (a.k == null && b.k == null) return a.i - b.i;
+    if (a.k == null) return 1;
+    if (b.k == null) return -1;
+    if (typeof a.k === 'string') return a.k.localeCompare(b.k) || a.i - b.i;
+    return a.k - b.k || a.i - b.i;
+  });
+  return withKey.map((x) => x.it);
+}
+
 function matchesQuery(it, q) {
   if (!q) return true;
   const hay = [it.title, it.organizer, it.location, it.source, ...(it.sources || []), ...(it.matched || []), ...(it.tags || []), it.description]
@@ -375,6 +424,10 @@ function renderResults({ aiPending = false } = {}) {
   const q = state.query.trim();
   // On "Your fields", a search also looks through every other-field suggestion.
   if (q) list = (state.filter === 'all' ? [...r.matches, ...r.suggestions] : list).filter((it) => matchesQuery(it, q));
+  list = sortList(list);
+  $('#sortSelect').value = state.sort;
+  $('#sortLabel').textContent = SORT_LABELS[state.sort] || '';
+  document.querySelector('.sort-btn').classList.toggle('active', state.sort !== 'best');
   const info = $('#queryInfo');
   info.classList.toggle('hidden', !q);
   if (q) info.textContent = `${list.length} result${list.length === 1 ? '' : 's'} for “${q}”`;
@@ -389,7 +442,7 @@ function renderResults({ aiPending = false } = {}) {
     h.className = 'group-title';
     h.textContent = 'Suggested from other fields';
     box.append(h);
-    r.suggestions.slice(0, 12).forEach((it) => box.append(card(it, prioByField)));
+    sortList(r.suggestions).slice(0, 12).forEach((it) => box.append(card(it, prioByField)));
   }
   const empty = $('#emptyState');
   empty.textContent = q
@@ -466,6 +519,11 @@ $('#addForm').addEventListener('submit', (e) => {
 $('#searchBtn').addEventListener('click', runSearch);
 $('#queryInput').addEventListener('input', (e) => {
   state.query = e.target.value;
+  renderResults({ aiPending: !$('#aiBanner').classList.contains('hidden') });
+});
+$('#sortSelect').addEventListener('change', (e) => {
+  state.sort = e.target.value;
+  try { localStorage.setItem('hf-sort', state.sort); } catch { /* private mode */ }
   renderResults({ aiPending: !$('#aiBanner').classList.contains('hidden') });
 });
 $('#queryInput').addEventListener('keydown', (e) => { if (e.key === 'Enter') e.target.blur(); });
