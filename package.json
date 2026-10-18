@@ -1,0 +1,21 @@
+{
+  "name": "hackathon-finder",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Installable web app that finds open hackathons and sends push notifications",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "test": "node --test test/*.test.mjs",
+    "vapid": "node scripts/gen-vapid.mjs",
+    "search": "node scripts/run-search.mjs",
+    "icons": "node scripts/gen-icons.mjs"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.135.0",
+    "@upstash/redis": "^1.39.0",
+    "web-push": "^3.6.7"
+  }
+}

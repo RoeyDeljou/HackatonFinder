@@ -1,0 +1,112 @@
+# Hackathon Finder
+
+An installable web app (PWA) that finds hackathons that are **open for registration**, ranks them by the fields you care about, and sends **push notifications** when new ones appear.
+
+- Pick fields (default: **Sports, AI, Innovation**), set each to High / Med / Low priority, and add or remove fields.
+- Press **Search**. A loading screen shows each source as it's checked, then the results appear, with the date and time of the search at the top.
+- After that, the app searches **twice a day** (morning and afternoon), removes hackathons that have closed, and pushes a notification for new matches.
+- If a day brings nothing new, an end-of-day notification says **"No new Hackathons were found today"**.
+- Tap any result to open its registration / info page.
+
+## Where it searches
+
+| Source | What it covers |
+|---|---|
+| Devpost | Every open and upcoming hackathon (all pages, via its JSON API) |
+| Devfolio | Hackathons with applications open |
+| MLH | The official student hackathon season (current and next) |
+| Luma | Hackathon events, using extra keyword searches per field |
+| lablab.ai | AI hackathons |
+| Cerebral Valley | AI hackathons (often company-run: Meta, Anthropic, NVIDIA…) |
+| Hack Club | High-school hackathons |
+| Hackster.io | Hardware / IoT contests |
+| Google News | Fresh announcements ("registration open", per-field queries) |
+| **AI web search** *(optional)* | Claude searches LinkedIn, big companies' sites, X and news for hackathons the platforms don't list, and confirms registration is open |
+
+**Priority affects search depth.** High-priority fields get more keyword searches on Luma and News, and a larger AI search budget. Results are ranked by your highest-priority matching field first, then match strength, then size and prize. Hackathons outside your fields appear under **Other fields** as suggestions.
+
+The same hackathon found on several sites is merged into one card. Closed ones are removed on every run: anything past its deadline, or gone from its source listing for 3 days.
+
+> LinkedIn has no public API. LinkedIn posts are reached through the AI web search and news coverage, so set `ANTHROPIC_API_KEY` for the widest coverage.
+
+---
+
+## Deploy (about 10 minutes, all on free tiers)
+
+### 1. Import to Vercel
+1. Go to <https://vercel.com/new> and import this GitHub repo (`HackatonFinder`). Keep the defaults (Framework: *Other*). Deploy.
+
+### 2. Add storage (Upstash Redis)
+1. In the Vercel project: **Storage → Create Database → Upstash (Redis)** → free plan → connect it to the project.
+   This adds `KV_REST_API_URL` / `KV_REST_API_TOKEN` (or `UPSTASH_REDIS_REST_*`) automatically.
+
+### 3. Set environment variables
+Vercel project → **Settings → Environment Variables**:
+
+| Name | Value |
+|---|---|
+| `VAPID_PUBLIC_KEY` / `VAPID_PRIVATE_KEY` | Run `npx web-push generate-vapid-keys` (or `npm run vapid` in this repo) |
+| `VAPID_SUBJECT` | `mailto:your@email.com` |
+| `CRON_SECRET` | Any long random string (protects the scheduled jobs) |
+| `ANTHROPIC_API_KEY` | *Optional, recommended.* Turns on AI web search. Get one at <https://console.anthropic.com> |
+
+Then **Deployments → ⋯ → Redeploy** so the variables take effect.
+
+### 4. Install on your phone
+- **iPhone (iOS 16.4+):** open the site in **Safari** → Share → **Add to Home Screen** → open it **from the home screen** → press **Search hackathons** and allow notifications. On iPhone, push only works from the home-screen app.
+- **Android:** open in Chrome → menu → **Install app** (or Add to Home screen) → allow notifications.
+
+### 5. (Recommended) Backup scheduler
+Vercel's free cron fires at a random minute within the hour, and very rarely skips. The included GitHub Action calls the same jobs about an hour later as a safety net. The server skips any slot that already ran, so nothing is ever sent twice.
+
+GitHub repo → **Settings → Secrets and variables → Actions** → add:
+- `APP_URL` = your Vercel URL, e.g. `https://hackaton-finder.vercel.app`
+- `CRON_SECRET` = the same value as in Vercel
+
+## Schedule
+
+Defined in `vercel.json` (UTC). The defaults fit Israel time:
+
+| Job | UTC | Israel (summer / winter) |
+|---|---|---|
+| Morning search | 05:00 | 08:00 / 07:00 |
+| Afternoon search | 12:00 | 15:00 / 14:00 |
+| End-of-day check | 18:00 | 21:00 / 20:00 |
+
+To change the times, edit the `crons` in `vercel.json` (and `.github/workflows/backup-cron.yml`), and set `SCHEDULE_*_LABEL` variables if you want the text in the app to match. "Today" for the end-of-day message uses each phone's own time zone.
+
+## Cost
+
+Everything runs on free tiers (Vercel Hobby, Upstash free, GitHub Actions).
+AI web search is the only paid part. It uses Claude (`claude-opus-5-5` by default) with web search, about two runs a day. Expect roughly **$0.30–$1 per run**, depending on how many fields are High priority. To spend less, set `ANTHROPIC_MODEL=claude-sonnet-5-5` and/or `AI_EFFORT=low`, or set `AI_DISCOVERY=off` to disable it. Manual searches are rate-limited to one every 3 minutes per device.
+
+## Run locally
+
+```bash
+npm install
+cp .env.example .env      # fill in VAPID keys (npm run vapid); storage falls back to .data/db.json
+npm run dev               # http://localhost:3000
+npm test                  # unit + end-to-end tests (no network needed)
+npm run search            # live search from the terminal
+```
+
+Push notifications need HTTPS (localhost is allowed in desktop browsers).
+
+**Self-hosting without Vercel** (VPS, Docker, Raspberry Pi): run `SCHEDULER=on node server.js`. The server then runs the three daily jobs itself (`SCHEDULE_TZ`, `SCHEDULE_MORNING`, `SCHEDULE_AFTERNOON`, `SCHEDULE_DIGEST`). It stores data in `.data/db.json` unless Upstash variables are set.
+
+## Project layout
+
+```
+public/            the PWA: index.html, app.js, styles.css, sw.js (push + offline), manifest, icons
+api/               serverless endpoints (Vercel): config, profile, subscribe, search (streams progress), hackathons, test-push, cron
+lib/sources/       one parser per hackathon site
+lib/engine.js      runs sources in parallel, merges duplicates, drops closed hackathons
+lib/fields.js      field library, keyword matching, ranking
+lib/ai.js          optional Claude web search discovery
+lib/jobs.js        profiles, scheduled runs, "new" tracking, notifications, end-of-day digest
+lib/store.js       Upstash Redis (prod) / JSON file (local)
+server.js          local + self-hosted server and scheduler
+test/              tests with real saved responses from every source
+```
+
+CI (`.github/workflows/ci.yml`) runs the tests and a **live source check** on every push, so a site that changes its format is caught quickly.

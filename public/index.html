@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Hackathon Finder</title>
+  <meta name="description" content="Finds open hackathons in your fields and notifies you twice a day.">
+  <meta name="theme-color" content="#4f46e5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d17" media="(prefers-color-scheme: dark)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Hackathons">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="/icons/icon-192.png" alt="" width="32" height="32">
+      <span>Hackathon Finder</span>
+    </div>
+    <button id="editBtn" class="ghost hidden" type="button">Edit fields</button>
+  </header>
+
+  <main>
+    <!-- Setup: choose fields + priorities -->
+    <section id="setupView" class="view hidden" aria-labelledby="setupTitle">
+      <h1 id="setupTitle">What should I look for?</h1>
+      <p class="muted">Pick your fields and how much each one matters. High priority fields get the deepest search. Hackathons from other fields are suggested too.</p>
+
+      <ul id="fieldList" class="field-list"></ul>
+
+      <form id="addForm" class="add-row" autocomplete="off">
+        <input id="addInput" type="text" maxlength="40" placeholder="Add a field, e.g. Fintech" aria-label="New field name">
+        <button type="submit" class="secondary">Add</button>
+      </form>
+      <div id="suggestChips" class="chips" aria-label="Suggested fields"></div>
+
+      <div id="notifyCard" class="notice hidden"></div>
+
+      <button id="searchBtn" class="primary big" type="button">Search hackathons</button>
+      <p id="setupError" class="error hidden" role="alert"></p>
+    </section>
+
+    <!-- Loading: first search -->
+    <section id="loadingView" class="view hidden" aria-live="polite">
+      <div class="radar" aria-hidden="true"><span></span><span></span><span></span><i></i></div>
+      <h2 id="loadingTitle">Searching for hackathons…</h2>
+      <p class="muted" id="loadingSub">Checking every source for open registrations.</p>
+      <ul id="sourceList" class="source-list"></ul>
+    </section>
+
+    <!-- Results -->
+    <section id="resultsView" class="view hidden">
+      <div class="results-head">
+        <div>
+          <div class="label">Last search</div>
+          <div id="searchedAt" class="searched-at">—</div>
+          <div id="nextRun" class="muted small"></div>
+        </div>
+        <button id="refreshBtn" class="secondary" type="button" aria-label="Search again">↻ Search</button>
+      </div>
+      <div id="aiBanner" class="banner hidden"><span class="spinner" aria-hidden="true"></span> Still searching LinkedIn, company sites and news…</div>
+      <div id="notifyCard2" class="notice hidden"></div>
+      <div id="filters" class="chips filters" role="tablist" aria-label="Filter results"></div>
+      <div id="results"></div>
+      <p id="emptyState" class="muted center hidden">No open hackathons match these filters right now. New ones are checked every morning and afternoon.</p>
+    </section>
+  </main>
+
+  <template id="cardTpl">
+    <a class="card" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="source"></span>
+        <span class="badge-new hidden">NEW</span>
+      </div>
+      <h3 class="title"></h3>
+      <div class="org muted small"></div>
+      <div class="meta"></div>
+      <div class="tags"></div>
+      <div class="cta">Register / info ↗</div>
+    </a>
+  </template>
+
+  <div id="toast" class="toast hidden" role="status"></div>
+  <script src="/app.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+# Backup scheduler: calls the same cron endpoints ~1h after Vercel Cron.
+# The server skips a slot that already ran, so this only does work if the
+# Vercel run was missed or failed. Needs repo secrets APP_URL and CRON_SECRET.
+name: backup-cron
+on:
+  schedule:
+    - cron: '20 6 * * *'   # morning search
+    - cron: '20 13 * * *'  # afternoon search
+    - cron: '20 19 * * *'  # end-of-day digest
+  workflow_dispatch:
+    inputs:
+      job:
+        description: 'search-morning | search-afternoon | digest'
+        default: search-morning
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Call cron endpoint
+        env:
+          APP_URL: ${{ secrets.APP_URL }}
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+          SCHEDULE: ${{ github.event.schedule }}
+          INPUT_JOB: ${{ github.event.inputs.job }}
+        run: |
+          if [ -z "$APP_URL" ] || [ -z "$CRON_SECRET" ]; then echo "APP_URL/CRON_SECRET not set, skipping"; exit 0; fi
+          case "$SCHEDULE${INPUT_JOB}" in
+            "20 6 * * *"|search-morning) Q="job=search&slot=morning" ;;
+            "20 13 * * *"|search-afternoon) Q="job=search&slot=afternoon" ;;
+            *) Q="job=digest" ;;
+          esac
+          curl -sS --fail-with-body -m 320 -H "Authorization: Bearer $CRON_SECRET" "${APP_URL%/}/api/cron?$Q"
