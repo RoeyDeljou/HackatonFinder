@@ -1,0 +1,719 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="zpXHUgaFUrSU9uhguHYkk9WZEfYBE-XMt2c4B6GPQMA" />
+    <meta name="description" content="Attend Reactor Event Series for on-going opportunities to learn, connect, and build. Expand your skillset." />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="Inside the Game: Developer Hackathon | Microsoft Reactor" />
+    <meta property="og:description" content="Attend Reactor Event Series for on-going opportunities to learn, connect, and build. Expand your skillset." />
+    <meta property="og:image" content="https://developer.microsoft.com/reactor/images/reactor-card-v2.png" />
+    <meta property="og:image:alt" content="Microsoft Reactor" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Microsoft Reactor" />
+    <meta property="og:url" content="https://developer.microsoft.com/en-us/reactor/series/S-1709/" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@MSFTReactor" />
+    <meta name="twitter:image" content="https://developer.microsoft.com/reactor/images/reactor-card-v2.png" />
+
+    <link rel="canonical" href="https://developer.microsoft.com/en-us/reactor/series/S-1709/" pw-id="canonical-url">
+    <meta name="application-name" content="Microsoft Reactor">
+    <title>Inside the Game: Developer Hackathon | Microsoft Reactor</title>
+    <link rel="stylesheet" href="/reactor/lib/docs-css/site-ltr.css?v=oUseOK1ZpDavbZa_VeQS2q5fhHzWP4gmVKyXXhh5Pac" />
+    <link rel="stylesheet" href="/reactor/css/site.css?v=OKSz9YAmF1Lxa7FlHiXX0B12__0s70vppxbKvN-KMkI" />
+    <script src="/reactor/js/shared/time-zone-abbreviations.js?v=Lh6RyjV-0obHlNTiAHttrWU_I-XLaHsejyX9rGvJsdU"></script>
+    <script src="/reactor/js/shared/set-time-zone.js?v=9uDeOdO_UWH8C1jgb48wvMTgnhj_Z6HogVRyqyxX3sk"></script>
+    <script src="/reactor/js/dropdown-handler.js?v=nc3igdWV6ZkIDyD36IvBL3AzMrpyOQnf6ZrGywtglKU"></script>
+    <script src="/reactor/js/shared/login-partial-keyboard-trap.js?v=FOH52HmAMRvIWNxDQUZvxN_hMhYKBmWPbq8G2TpTbgc"></script>
+    <script type="text/javascript">
+        !function (T, l, y) { var S = T.location, k = "script", D = "instrumentationKey", C = "ingestionendpoint", I = "disableExceptionTracking", E = "ai.device.", b = "toLowerCase", w = "crossOrigin", N = "POST", e = "appInsightsSDK", t = y.name || "appInsights"; (y.name || T[e]) && (T[e] = t); var n = T[t] || function (d) { var g = !1, f = !1, m = { initialize: !0, queue: [], sv: "5", version: 2, config: d }; function v(e, t) { var n = {}, a = "Browser"; return n[E + "id"] = a[b](), n[E + "type"] = a, n["ai.operation.name"] = S && S.pathname || "_unknown_", n["ai.internal.sdkVersion"] = "javascript:snippet_" + (m.sv || m.version), { time: function () { var e = new Date; function t(e) { var t = "" + e; return 1 === t.length && (t = "0" + t), t } return e.getUTCFullYear() + "-" + t(1 + e.getUTCMonth()) + "-" + t(e.getUTCDate()) + "T" + t(e.getUTCHours()) + ":" + t(e.getUTCMinutes()) + ":" + t(e.getUTCSeconds()) + "." + ((e.getUTCMilliseconds() / 1e3).toFixed(3) + "").slice(2, 5) + "Z" }(), iKey: e, name: "Microsoft.ApplicationInsights." + e.replace(/-/g, "") + "." + t, sampleRate: 100, tags: n, data: { baseData: { ver: 2 } } } } var h = d.url || y.src; if (h) { function a(e) { var t, n, a, i, r, o, s, c, u, p, l; g = !0, m.queue = [], f || (f = !0, t = h, s = function () { var e = {}, t = d.connectionString; if (t) for (var n = t.split(";"), a = 0; a < n.length; a++) { var i = n[a].split("="); 2 === i.length && (e[i[0][b]()] = i[1]) } if (!e[C]) { var r = e.endpointsuffix, o = r ? e.location : null; e[C] = "https://" + (o ? o + "." : "") + "dc." + (r || "services.visualstudio.com") } return e }(), c = s[D] || d[D] || "", u = s[C], p = u ? u + "/v2/track" : d.endpointUrl, (l = []).push((n = "SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details)", a = t, i = p, (o = (r = v(c, "Exception")).data).baseType = "ExceptionData", o.baseData.exceptions = [{ typeName: "SDKLoadFailed", message: n.replace(/\./g, "-"), hasFullStack: !1, stack: n + "\nSnippet failed to load [" + a + "] -- Telemetry is disabled\nHelp Link: https://go.microsoft.com/fwlink/?linkid=2128109\nHost: " + (S && S.pathname || "_unknown_") + "\nEndpoint: " + i, parsedStack: [] }], r)), l.push(function (e, t, n, a) { var i = v(c, "Message"), r = i.data; r.baseType = "MessageData"; var o = r.baseData; return o.message = 'AI (Internal): 99 message:"' + ("SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details) (" + n + ")").replace(/\"/g, "") + '"', o.properties = { endpoint: a }, i }(0, 0, t, p)), function (e, t) { if (JSON) { var n = T.fetch; if (n && !y.useXhr) n(t, { method: N, body: JSON.stringify(e), mode: "cors" }); else if (XMLHttpRequest) { var a = new XMLHttpRequest; a.open(N, t), a.setRequestHeader("Content-type", "application/json"), a.send(JSON.stringify(e)) } } }(l, p)) } function i(e, t) { f || setTimeout(function () { !t && m.core || a() }, 500) } var e = function () { var n = l.createElement(k); n.src = h; var e = y[w]; return !e && "" !== e || "undefined" == n[w] || (n[w] = e), n.onload = i, n.onerror = a, n.onreadystatechange = function (e, t) { "loaded" !== n.readyState && "complete" !== n.readyState || i(0, t) }, n }(); y.ld < 0 ? l.getElementsByTagName("head")[0].appendChild(e) : setTimeout(function () { l.getElementsByTagName(k)[0].parentNode.appendChild(e) }, y.ld || 0) } try { m.cookie = l.cookie } catch (p) { } function t(e) { for (; e.length;)!function (t) { m[t] = function () { var e = arguments; g || m.queue.push(function () { m[t].apply(m, e) }) } }(e.pop()) } var n = "track", r = "TrackPage", o = "TrackEvent"; t([n + "Event", n + "PageView", n + "Exception", n + "Trace", n + "DependencyData", n + "Metric", n + "PageViewPerformance", "start" + r, "stop" + r, "start" + o, "stop" + o, "addTelemetryInitializer", "setAuthenticatedUserContext", "clearAuthenticatedUserContext", "flush"]), m.SeverityLevel = { Verbose: 0, Information: 1, Warning: 2, Error: 3, Critical: 4 }; var s = (d.extensionConfig || {}).ApplicationInsightsAnalytics || {}; if (!0 !== d[I] && !0 !== s[I]) { var c = "onerror"; t(["_" + c]); var u = T[c]; T[c] = function (e, t, n, a, i) { var r = u && u(e, t, n, a, i); return !0 !== r && m["_" + c]({ message: e, url: t, lineNumber: n, columnNumber: a, error: i }), r }, d.autoExceptionInstrumented = !0 } return m }(y.cfg); function a() { y.onInit && y.onInit(n) } (T[t] = n).queue && 0 === n.queue.length ? (n.queue.push(a), n.trackPageView({})) : a() }(window, document, {
+        src: "https://js.monitor.azure.com/scripts/b/ai.2.min.js", // The SDK URL Source
+        // name: "appInsights", // Global SDK Instance name defaults to "appInsights" when not supplied
+        // ld: 0, // Defines the load delay (in ms) before attempting to load the sdk. -1 = block page load and add to head. (default) = 0ms load after timeout,
+        // useXhr: 1, // Use XHR instead of fetch to report failures (if available),
+        crossOrigin: "anonymous", // When supplied this will add the provided value as the cross origin attribute on the script tag
+        onInit: function (sdk) {
+        sdk.addTelemetryInitializer(function (envelope) {
+        envelope.data["MachineName"] = "wn1mdwk000NIG";
+        envelope.data["AppDomain"] = "Reactor.Web";
+        envelope.data["RuntimeVersion"] = "10.0.12";
+        envelope.data["DeploymentBranchName"] = "main";
+        envelope.data["DeploymentGroup"] = "";
+        envelope.data["DeploymentVersion"] = "20261014.1.main";
+        envelope.data["DeploymentSlot"] = "Production";
+        envelope.data["AppServiceInstanceId"] = "48d425e2be02fef907deee28c94085246ad576fa2798b28dda9a1fb0a98dd0f6";
+        envelope.data["AppServiceMachineName"] = "wn1mdwk000NIG";
+        envelope.data["AppServiceRegionName"] = "West Central US";
+        envelope.data["AppServiceSiteName"] = "reactor-prod-westcentralus-01";
+        envelope.data["HttpRequestUrlReferrer"] = "";
+        envelope.data["HttpRequestUserAgent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36";
+        envelope.data["HttpRequestContentLength"] = "";
+        envelope.data["UserIsAuthenticated"] = "False";
+        });
+
+        sdk.addTelemetryInitializer(function (envelope) {
+        return true;
+        });
+        },
+        cfg: { // Application Insights Configuration
+        connectionString: "InstrumentationKey=2672b683-9d04-4e02-a3c5-d9a1a0d065c8;IngestionEndpoint=https://westus2-1.in.applicationinsights.azure.com/;LiveEndpoint=https://westus2.livediagnostics.monitor.azure.com/",
+        enableCorsCorrelation: true,
+        enableAutoRouteTracking: true,
+        enableRequestHeaderTracking: true,
+        enableResponseHeaderTracking: true
+        }
+        });
+    </script>
+</head>
+<body>
+    <div id="cookie-compliance-banner" pw-id="cookie-compliance-banner"></div>
+    
+
+<a tabindex="0" id="skip-to-main-content" href="#main" class="skip-to-main">
+    Skip to main content
+</a>
+<header>
+    <div class="nav-bar has-default-focus nav-bar-display" aria-owns="ms-logo-link-container home-link-container about-link-container booking-link-container speaker-link-container signin-link-container msrewards-link-container">
+        <div id="ms-logo-link-container" class="nav-bar-brand">
+            <a class="nav-bar-button" href="https://www.microsoft.com/" aria-label="Visit Microsoft webpage">
+                <div class="nav-bar-logo">
+                    <img src="/reactor/images/layout/microsoft-logo.svg?v=vVXS2capokuSiE-VbChjV2O_F9KU_vqA0GDWH0GoY7o" width="108" height="23" style="border-radius:0" alt="microsoft icon" />
+                </div>
+            </a>
+        </div>
+        <div class="divider-vertical-second-menu is-hidden-mobile"></div>
+        <div id="home-link-container" class="nav-bar-item has-margin-500-zoom has-background-white">
+            <a class="nav-bar-button" aria-label="Visit Microsoft Reactor webpage" href="/en-us/reactor/">
+                <div class="nav-bar-logo">
+                    <img class="invert-color-high-contrast" src="/reactor/images/layout/reactor-logo.webp?v=6FCbNqvv7iuLPDJLdjOCjFwGfTLJIjkzjfiswa1JdmQ" width="160" height="35" alt="reactor logo" />
+                </div>
+            </a>
+        </div>
+        <div class="divider-vertical-second-menu is-hidden-mobile"></div>
+        <div id="about-link-container" class="nav-bar-item has-margin-500-zoom is-hidden-mobile">
+            <a class="nav-bar-button" aria-label="Visit Microsoft Reactor About webpage" href="/en-us/reactor/about/">
+                <p class="is-size-h6 has-text-weight-bold text-decoration-underline">About</p>
+            </a>
+        </div>
+
+        <span class="nav-bar-spacer"></span>
+        
+
+
+    <div id="signin-link-container" class="nav-bar-item margin-left-5px is-hidden-mobile">
+        <a pw-id="sign-in" class="nav-bar-button" itemprop="url" href="/en-us/reactor/auth/sign-in/?redirecturi=%2Fen-us%2Freactor%2Fseries%2Fs-1709%2F">
+            <span class="text-decoration-underline">
+                Sign in
+            </span>
+        </a>
+    </div>
+
+        <div class="nav-bar-item is-hidden-desktop has-margin-right-large hide-element-500-zoom">
+            <button class="nav-bar-button nav-bar-menu" title="Global navigation" aria-expanded="false" onclick="showMenu()">
+                <div class="nav-bar-burger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span class="nav-bar-burger-label">
+                        Global navigation
+                    </span>
+                </div>
+            </button>
+        </div>
+    </div>
+</header>
+    
+
+
+<div id="modalmenu" class="is-hidden is-docked-right is-flex is-flex-column">
+    <div class="modal-background z-index-2"></div>
+    <div id="burger-menue-container" class="modal-content modal-card is-docked-right is-flex is-flex-column has-default-focus" style="z-index: 99">
+        <header class="modal-card-head has-padding-small darkgray-border">
+            <div class="nav-bar-item">
+                <a type="button" class="nav-bar-button" autofocus href="/en-us/reactor/">
+                    <span class="icon is-small" aria-hidden="true">
+                        <span class="docon docon-home"></span>
+                    </span>
+                    <h4 class="title is-size-large has-padding-left-extra-small">
+                        Home
+                    </h4>
+                </a>
+            </div>
+            <button class="has-border-none" aria-label="close" onclick="showMenu()">
+                <span class="icon docon docon-navigate-close" aria-hidden="true"></span>
+            </button>
+        </header>
+        <div>
+            <section class="modal-card-body has-padding-top-none">
+                <nav class="nav-bar-mobile-nav">
+                    <ul class="nav-bar-mobile-nav-list">
+                            <li class="nav-bar-mobile-nav-item has-text-weight-semibold is-size-body">
+                                <a class="nav-bar-button has-text-wrap has-padding-left-none is-size-small" itemprop="url" href="/en-us/reactor/auth/sign-in/?redirecturi=%2Fen-us%2Freactor%2Fseries%2Fs-1709%2F">
+                                    <span>
+                                        Sign in
+                                    </span>
+                                </a>
+                            </li>
+                        <li class="nav-bar-mobile-nav-item has-text-weight-semibold is-size-body">
+                            <a class="nav-bar-button has-text-wrap has-padding-left-none is-size-small" aria-label="Visit Microsoft Reactor About webpage" href="/en-us/reactor/about/">
+                                <span>
+                                    About
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </section>
+        </div>
+    </div>
+</div>
+    
+
+
+    <div>
+        
+
+
+<main class="mainContainer uhf-container is-full has-default-focus">
+    <section class="hero home-page__hero hero-home is-hidden-touch">
+        <div class="hero-common-background hero-event-series-background is-hidden-mobile has-padding-bottom-extra-large has-padding-top-extra-large uhf-container"
+             style="background-image: url(/reactor/mediahandler/images/seriesbanners/banners/Series_BLOCK_ICON.webp);"
+             pw-id="series-hero-banner">
+            <div class="columns has-large-gaps uhf-container padding-left-xs">
+                <div class="column has-text-docs-invert is-half">
+                    <h1 pw-id="header-series-title" class="font-size-h1 has-margin-top-large line-height-1-2">Inside the Game: Developer Hackathon </h1>
+                    <p pw-id="headerDescription" class="wrap-word has-margin-top-large line-height-1-2">
+                        Ready to get started with AI and the latest technologies? Microsoft Reactor provides events, training, and community resources to help developers, entrepreneurs and startups build on AI technology and more. Join us!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="hero home-page__hero hero-home inherit-position">
+        <div class="hero-common-background hero-home-background-mobile">
+            <div class="main-indented-content hero-body">
+                <div class="hero-body has-margin-left-medium">
+                    <div class="columns has-large-gaps">
+                        <div class="column has-text-docs-invert">
+                            <h1 pw-id="header-series-title" class="font-size-h1 has-margin-top-large line-height-1-2">Inside the Game: Developer Hackathon </h1>
+                            <p pw-id="headerDescription" class="wrap-word has-margin-top-large">
+                                Ready to get started with AI and the latest technologies? Microsoft Reactor provides events, training, and community resources to help developers, entrepreneurs and startups build on AI technology and more. Join us!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="columns uhf-container margin-bottom-xxxl display-block-touch has-default-focus">
+        <div class="column padding-right-xxxl-desktop has-margin-top-extra-large">
+            <span class="docon docon-chevron-left-light margin-left-minus-4px has-text-primary" aria-hidden="true"></span>
+            <a href="javascript:history.back()"><strong>Go back</strong></a>
+
+            
+
+
+<div>
+    <h2 pw-id="event-title" class="font-size-h2 has-text-weight-semibold line-height-1-2 has-margin-top-large">Inside the Game: Developer Hackathon</h2>
+    <ul class="tags has-margin-top-small has-margin-bottom-none"><li class="has-text-weight-semibold line-height-1-2 has-margin-top-small" pw-id="format-title">Format:</li><li class="has-text-weight-semibold line-height-1-2 has-margin-top-small" pw-id="format-livestream-S-1709"><img aria-label="Livestream icon" class="is-small has-margin-left-small has-margin-right-small" alt="alt##Livestream" src="/reactor/images/event/livestream.svg?v=y1ouCbVDNYj8stjJCRPevTcJlojfCAPjc1lwmg-rMs8"></img>Livestream</li></ul>
+    <p class="has-text-weight-semibold line-height-1-2 has-margin-top-small has-margin-bottom-none" pw-id="topic">Topic: AI Applications</p>
+    <p class="has-text-weight-semibold line-height-1-2 has-margin-top-small has-margin-bottom-none" pw-id="event-language">Language: English</p>
+
+        <ul class="tags has-margin-top-none">
+            <li pw-id="events-in-series-title" class="has-text-weight-semibold line-height-1-2 has-margin-top-small">
+                Events in this Series:
+            </li>
+            <li class="has-text-weight-semibold line-height-1-2 has-margin-left-extra-small has-margin-top-small">1</li>
+        </ul>
+</div>
+
+            <div pw-id="description" class="line-height-1-2 has-margin-top-small">
+                <reactor-markdown><p>Football stories do not start and end with the scoreline. In the Inside the Game: Developer Hackathon (presented by Microsoft and the Premier League), you will build AI-driven solutions that help transform synthetic football events into explainable match intelligence for broadcast and streaming experiences.</p>
+<p>Tune in to the below livestream events to get inspired, learn more, and bring your best skills to the pitch. projects.</p>
+</reactor-markdown>
+            </div>
+
+            <reactor-tags></reactor-tags>
+
+            
+
+
+
+
+            
+
+
+<div pw-id="speakers-section">
+        <link rel="stylesheet" href="/reactor/css/carousel.css?v=ZqdNzW-iRnstBYW3aZeN0haSQY-1b4idQ-sfOwHjyWs" />
+        <p class="font-size-h5 has-text-weight-semibold line-height-1-2 has-margin-top-large">
+            Speakers
+        </p>
+        <section class="carousel-wrapper desktop-section" aria-labelledby="carouselheading">
+            <ul class="navigation-btns">
+                <li>
+                    <button id="previous-btn" type="button" class="btn-prev" aria-label="previous slide"><span class="icon docon docon-chevron-left-light" aria-hidden="true"></span></button>
+                </li>
+                <li>
+                    <button id="next-btn" type="button" class="btn-next" aria-label="next slide"><span class="icon docon docon-chevron-right-light" aria-hidden="true"></span></button>
+                </li>
+            </ul>
+            <div id="c">
+                <ul class="speaker-list">
+                        <li class="slide carousel">
+                            <article class="card speaker-card has-border-radius-large">
+                                <div class="card-header card-player has-padding-none is-text-centered speaker-image-parent has-border-bottom has-margin-bottom-small" aria-hidden="true">
+                                        <img pw-id="speaker-photo" class="speaker-photo" src="/reactor/mediahandler/speakers/images/speaker_images/Brian%20Benz.jpg" alt="speaker photo">
+                                </div>
+                                <div class="card-content has-padding-top-small has-margin-bottom-none">
+                                    <p aria-label="Brian Benz" class="card-content-title">
+                                        Brian Benz
+                                    </p>
+                                    <ul class="card-content-metadata">
+                                        <li>Principal Cloud Advocate</li>
+                                    </ul>
+                                    <p class="is-normal max-lines-4">Microsoft</p>
+                                        <input type="hidden" value="Brian is a Java Champion and a Cloud Advocate at Microsoft, helping developers get the most out of Azure. Before Joining Microsoft, he was a program manager, evangelist, solution architect, consultant, developer, and author at IBM, Deloitte, and other companies. Find him on most of the socials and GitHub at @bbenz. A current list of Brian&#x27;s talks can be found at https://aka.ms/brianspeaking" id="ef320a80-0f33-417e-bd14-f12285d4be15" />
+                                        <button class="has-border-none bio-click has-padding-left-none" data-id="ef320a80-0f33-417e-bd14-f12285d4be15" aria-label="Brian Benz Bio">
+                                            <p class="font-size-m font-weight-semibold font-color-blue">
+                                                <span id="" class="span-icon docon docon-math-plus has-margin-right-small"></span>
+                                                Bio
+                                            </p>
+                                        </button>
+                                </div>
+                                <div class="card-footer speaker-card-footer">
+                                </div>
+                            </article>
+                        </li>
+                </ul>
+            </div>
+            <div class="has-margin-top-medium speaker-bio">
+                <p id="speaker-bio"></p>
+            </div>
+            <div class="pagination">
+                <nav class="pagination is-centered carousel-li" role="navigation" aria-label="pagination">
+                    <ul id="speakers-pagination" class="pagination-list inherit-position"></ul>
+                </nav>
+            </div>
+        </section>
+</div>
+
+        </div>
+
+        <div class="is-hidden-desktop">
+            
+
+
+    <div class="has-body-background-dark">
+        <div class="columns uhf-container has-margin-top-extra-large margin-bottom-xxxl-desktop display-block-touch">
+            <div class="column has-margin-top-extra-large has-margin-bottom-extra-large-desktop">
+                <h2 pw-id="past-title" class="font-size-h2 has-margin-bottom-large line-height-1-2">
+                    Past Events in this Series
+                </h2>
+                <p pw-id="all-times-in-past" class="has-margin-bottom-medium">
+                    <strong>
+                        All times in
+                    </strong> - Coordinated Universal Time
+                </p>
+                    
+
+
+
+<article class="card is-horizontal has-margin-bottom-medium has-padding-top-none">
+    <div class="has-background-azure-card has-text-docs-invert has-margin-bottom-none is-text-centered has-padding-extra-small max-width-card-event-serie">
+        <div class="card-header-image has-padding-small has-padding-top-large has-padding-small-mobile">
+            <p class="has-margin-bottom-large has-margin-top-large has-margin-top-none-mobile has-padding-top-small-desktop">Oct</p>
+            <p class="font-size-h0 has-margin-bottom-large">14</p>
+            <p>Wednesday</p>
+            <p>2026</p>
+        </div>
+    </div>
+    <div class="card-content has-padding-top-medium">
+        <a class="card-content-title has-margin-left-medium" href="/en-us/reactor/events/27536/"><p class="is-size-h5">Build AI-powered soccer insights apps with AKS and ACA</p></a>
+        <p class="card-content-title has-margin-left-medium is-size-h5">
+            4:00 PM - 5:00 PM (UTC)
+        </p>
+        <p class="has-margin-left-medium has-truncated-text-2-lines" title="Learn how to build and deploy AI-powered applications that analyze football match and player data using AKS and ACA.&#xA;Using Premier League-inspired scenarios such as identifying team play styles, analyzing counterattacks, or uncovering player performance patterns, we&#x27;ll walk through a reference architecture for developing, deploying, and operating AI applications and agents on Azure.&#xA;Attendees will leave with practical guidance and ideas they can extend into their hackathon projects.&#xA;">Learn how to build and deploy AI-powered applications that analyze football match and player data using AKS and ACA.&#xA;Using Premier League-inspired scenarios such as identifying team play styles, analyzing counterattacks, or uncovering player performance patterns, we&#x27;ll walk through a reference architecture for developing, deploying, and operating AI applications and agents on Azure.&#xA;Attendees will leave with practical guidance and ideas they can extend into their hackathon projects.&#xA;</p>
+        <div class="has-margin-left-medium">
+            <ul class="tags has-margin-top-small has-margin-bottom-none"><li class="has-text-weight-semibold line-height-1-2 has-margin-top-small" pw-id="format-title">Format:</li><li class="has-text-weight-semibold line-height-1-2 has-margin-top-small" pw-id="format-livestream-27536"><img aria-label="Livestream icon" class="is-small has-margin-left-small has-margin-right-small" alt="alt##Livestream" src="/reactor/images/event/livestream.svg?v=y1ouCbVDNYj8stjJCRPevTcJlojfCAPjc1lwmg-rMs8"></img>Livestream</li></ul>
+            <p class="has-text-weight-semibold line-height-1-2 has-margin-top-small has-margin-bottom-none" pw-id="topic">Topic: AI Applications</p>
+            <p class="has-text-weight-semibold line-height-1-2 has-margin-top-small has-margin-bottom-none" pw-id="event-language">Language: English</p>
+        </div>
+            <a class="button is-outlined is-blue has-text-weight-semibold has-margin-top-large has-margin-left-medium" role="link" href="/en-us/reactor/events/27536/">
+                View on Demand
+            </a>
+    </div>
+</article>
+            </div>
+        </div>
+    </div>
+
+        </div>
+
+    </div>
+
+    <div class="is-hidden-touch">
+        
+
+
+    <div class="has-body-background-dark">
+        <div class="columns uhf-container has-margin-top-extra-large margin-bottom-xxxl-desktop display-block-touch">
+            <div class="column has-margin-top-extra-large has-margin-bottom-extra-large-desktop">
+                <h2 pw-id="past-title" class="font-size-h2 has-margin-bottom-large line-height-1-2">
+                    Past Events in this Series
+                </h2>
+                <p pw-id="all-times-in-past" class="has-margin-bottom-medium">
+                    <strong>
+                        All times in
+                    </strong> - Coordinated Universal Time
+                </p>
+                    
+
+
+
+<article class="card is-horizontal has-margin-bottom-medium has-padding-top-none">
+    <div class="has-background-azure-card has-text-docs-invert has-margin-bottom-none is-text-centered has-padding-extra-small max-width-card-event-serie">
+        <div class="card-header-image has-padding-small has-padding-top-large has-padding-small-mobile">
+            <p class="has-margin-bottom-large has-margin-top-large has-margin-top-none-mobile has-padding-top-small-desktop">Oct</p>
+            <p class="font-size-h0 has-margin-bottom-large">14</p>
+            <p>Wednesday</p>
+            <p>2026</p>
+        </div>
+    </div>
+    <div class="card-content has-padding-top-medium">
+        <a class="card-content-title has-margin-left-medium" href="/en-us/reactor/events/27536/"><p class="is-size-h5">Build AI-powered soccer insights apps with AKS and ACA</p></a>
+        <p class="card-content-title has-margin-left-medium is-size-h5">
+            4:00 PM - 5:00 PM (UTC)
+        </p>
+        <p class="has-margin-left-medium has-truncated-text-2-lines" title="Learn how to build and deploy AI-powered applications that analyze football match and player data using AKS and ACA.&#xA;Using Premier League-inspired scenarios such as identifying team play styles, analyzing counterattacks, or uncovering player performance patterns, we&#x27;ll walk through a reference architecture for developing, deploying, and operating AI applications and agents on Azure.&#xA;Attendees will leave with practical guidance and ideas they can extend into their hackathon projects.&#xA;">Learn how to build and deploy AI-powered applications that analyze football match and player data using AKS and ACA.&#xA;Using Premier League-inspired scenarios such as identifying team play styles, analyzing counterattacks, or uncovering player performance patterns, we&#x27;ll walk through a reference architecture for developing, deploying, and operating AI applications and agents on Azure.&#xA;Attendees will leave with practical guidance and ideas they can extend into their hackathon projects.&#xA;</p>
+        <div class="has-margin-left-medium">
+            <ul class="tags has-margin-top-small has-margin-bottom-none"><li class="has-text-weight-semibold line-height-1-2 has-margin-top-small" pw-id="format-title">Format:</li><li class="has-text-weight-semibold line-height-1-2 has-margin-top-small" pw-id="format-livestream-27536"><img aria-label="Livestream icon" class="is-small has-margin-left-small has-margin-right-small" alt="alt##Livestream" src="/reactor/images/event/livestream.svg?v=y1ouCbVDNYj8stjJCRPevTcJlojfCAPjc1lwmg-rMs8"></img>Livestream</li></ul>
+            <p class="has-text-weight-semibold line-height-1-2 has-margin-top-small has-margin-bottom-none" pw-id="topic">Topic: AI Applications</p>
+            <p class="has-text-weight-semibold line-height-1-2 has-margin-top-small has-margin-bottom-none" pw-id="event-language">Language: English</p>
+        </div>
+            <a class="button is-outlined is-blue has-text-weight-semibold has-margin-top-large has-margin-left-medium" role="link" href="/en-us/reactor/events/27536/">
+                View on Demand
+            </a>
+    </div>
+</article>
+            </div>
+        </div>
+    </div>
+
+    </div>
+</main>
+
+
+    </div>
+    <div class="has-margin-auto-top">
+
+    </div>
+    
+
+
+
+    <div class="footerContainer footer-layout has-default-focus flex-shrink-0 has-margin-auto-top is-full-width bottom-0 footer-size">
+        <footer class="uhf-container has-margin-bottom-small">
+            <div class="columns is-desktop is-2-tablet is-full-width has-padding-right-none-mobile">
+                <div class="column display-block-tablet">
+                    <div>
+                        <div class="has-padding-none has-margin-top-large full-width-mobile display-flex is-narrow" align="center">
+                            <a pw-id="facebook-link" href="https://www.facebook.com/MicrosoftReactor/" target="_blank" title="Facebook" aria-label="Facebook" class="padding-right-xxs">
+                                <figure>
+                                    <img pw-id="facebook-img-link" src="/reactor/images/footer/facebook.svg?v=GzZRC-pTV5-4W3wXeqZxeIHyOvbYDiWqYNcKowpC_wc" alt="Facebook logo">
+                                </figure>
+                            </a>
+                            <a pw-id="meetup-link" href="https://www.meetup.com/pro/microsoft-reactor/" target="_blank" title="Meetup" aria-label="Meetup" class="padding-right-xxs">
+                                <figure>
+                                    <img pw-id="meetup-img-link" src="/reactor/images/footer/meetup.svg?v=80o8qL-Kz1reff5hmuj0KtvFuErHQpStBn_V6PAJ4SA" alt="Meetup logo">
+                                </figure>
+                            </a>
+                            <a pw-id="x-link" href="https://twitter.com/MSFTReactor/" target="_blank" title="X" aria-label="X" class="padding-right-xxs">
+                                <figure>
+                                    <img pw-id="x-img-link" src="/reactor/images/footer/x.svg?v=GvErXfNXIVVN6k6vWZlgIZhKReRkx7P0zHnFk6kKPT8" alt="X logo">
+                                </figure>
+                            </a>
+                            <a pw-id="youtube-link" href="https://www.youtube.com/channel/UCkm6luGCS3hD25jcEhvRMIA/videos/" target="_blank" title="YouTube" aria-label="YouTube" class="padding-right-xxs">
+                                <figure>
+                                    <img pw-id="youtube-img-link" src="/reactor/images/footer/youtube.svg?v=-MpScwvabzijkZWkK_sZBhdYmmPEkX8Jy3f3wZG5kdQ" alt="YouTube logo">
+                                </figure>
+                            </a>
+                            <a pw-id="linkedin-link" href="https://www.linkedin.com/showcase/93455361" target="_blank" title="LinkedIn" aria-label="LinkedIn" class="padding-right-xxs">
+                                <figure>
+                                    <img pw-id="linkedin-img-link" src="/reactor/images/footer/linkedin.svg?v=VuI1cwjHzqVuN6e97QMOOs5nny6GisqqIIgWEyhyfWo" alt="LinkedIn logo">
+                                </figure>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="column has-padding-top-medium has-padding-left-none-mobile has-padding-right-none-mobile is-narrow" align="left">
+                    
+
+    <div class="is-size-small is-full-width-mobile">
+        <p pw-id="language-footer-label">Change language</p>
+        <form method="post" class="form-horizontal" action="/en-us/reactor/home/setculture/?returnurl=%2Fen-us%2Freactor%2Fseries%2Fs-1709%2F">
+            
+            <select id="cultureDropdown" class="is-full-width-mobile" aria-label="Change language" name="culture" autocomplete="language" onchange="handleDropDowns(this)" pw-id="language-dropdown"><option selected="selected" value="en-us">English (United States)</option>
+<option value="es-es">Espa&#xF1;ol (Espa&#xF1;a)</option>
+<option value="ja-jp">&#x65E5;&#x672C;&#x8A9E; (&#x65E5;&#x672C;)</option>
+<option value="pt-br">Portugu&#xEA;s (Brasil)</option>
+<option value="zh-cn">&#x4E2D;&#x6587;&#xFF08;&#x4E2D;&#x56FD;&#xFF09;</option>
+<option value="zh-tw">&#x4E2D;&#x6587;&#xFF08;&#x53F0;&#x7063;&#xFF09;</option>
+<option value="cs-cz">&#x10C;e&#x161;tina (&#x10C;esko)</option>
+<option value="de-de">Deutsch (Deutschland)</option>
+<option value="hu-hu">Magyar (Magyarorsz&#xE1;g)</option>
+<option value="fr-fr">Fran&#xE7;ais (France)</option>
+<option value="id-id">Indonesia (Indonesia)</option>
+<option value="it-it">Italiano (Italia)</option>
+<option value="ko-kr">&#xD55C;&#xAD6D;&#xC5B4;(&#xB300;&#xD55C;&#xBBFC;&#xAD6D;)</option>
+<option value="nl-nl">Nederlands (Nederland)</option>
+<option value="pl-pl">Polski (Polska)</option>
+<option value="sv-se">Svenska (Sverige)</option>
+<option value="th-th">&#xE44;&#xE17;&#xE22; (&#xE44;&#xE17;&#xE22;)</option>
+<option value="tr-tr">T&#xFC;rk&#xE7;e (T&#xFC;rkiye)</option>
+<option value="vi-vn">Ti&#x1EBF;ng Vi&#x1EC7;t (Vi&#x1EC7;t Nam)</option>
+</select>
+        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8HYBKvcWCtlGnDxx2CEo9D86ezfVetFf02LYjb4rDfkZMVlanBu9qXvLXrmXTHKVCijG83hGauSPuvBPucE2qIOa5aUjR0Y-XS8HDj28W6CA2rPSrxF-uoJaGV7UN8KdfY0revg0p42hNw32l1QqFeA" /></form>
+    </div>
+
+                    
+
+
+<div class="is-size-small is-full-width-mobile">
+    <p pw-id="timezone-footer-label">Your time zone</p>
+    <form id="timezoneForm" pw-id="timeZoneFooter" method="post" class="form-horizontal" action="/en-us/reactor/home/settimezone/?returnurl=%2Fen-us%2Freactor%2Fseries%2Fs-1709%2F">
+        
+        <select id="timeZoneOffset"
+            pw-id="timezone-footer"
+            class="is-size-small is-full-width-mobile"
+            name="timeZoneItem"
+            aria-label="Your time zone"
+            onchange="handleDropDowns(this, 'timezone')">
+                <option value="Dateline Standard Time" data-timezone="Dateline Standard Time">(UTC-12:00) Dateline Standard Time</option>
+                <option value="UTC-11" data-timezone="Coordinated Universal Time-11">(UTC-11:00) Coordinated Universal Time-11</option>
+                <option value="Hawaiian Standard Time" data-timezone="Hawaii">(UTC-10:00) Hawaii</option>
+                <option value="Marquesas Standard Time" data-timezone="Marquesas Islands">(UTC-09:30) Marquesas Islands</option>
+                <option value="Aleutian Standard Time" data-timezone="Aleutian Islands">(UTC-09:00) Aleutian Islands</option>
+                <option value="UTC-09" data-timezone="Coordinated Universal Time-09">(UTC-09:00) Coordinated Universal Time-09</option>
+                <option value="Alaskan Standard Time" data-timezone="Alaska">(UTC-08:00) Alaska</option>
+                <option value="UTC-08" data-timezone="Coordinated Universal Time-08">(UTC-08:00) Coordinated Universal Time-08</option>
+                <option value="Pacific Standard Time (Mexico)" data-timezone="Baja California">(UTC-07:00) Baja California</option>
+                <option value="Pacific Standard Time" data-timezone="Pacific Time (US &amp; Canada)">(UTC-07:00) Pacific Time (US &amp; Canada)</option>
+                <option value="US Mountain Standard Time" data-timezone="Arizona">(UTC-07:00) Arizona</option>
+                <option value="Mountain Standard Time (Mexico)" data-timezone="Chihuahua, La Paz, Mazatlan">(UTC-07:00) Chihuahua, La Paz, Mazatlan</option>
+                <option value="Yukon Standard Time" data-timezone="Yukon">(UTC-07:00) Yukon</option>
+                <option value="Mountain Standard Time" data-timezone="Mountain Time (US &amp; Canada)">(UTC-06:00) Mountain Time (US &amp; Canada)</option>
+                <option value="Central America Standard Time" data-timezone="Central America">(UTC-06:00) Central America</option>
+                <option value="Central Standard Time (Mexico)" data-timezone="Guadalajara, Mexico City, Monterrey">(UTC-06:00) Guadalajara, Mexico City, Monterrey</option>
+                <option value="Canada Central Standard Time" data-timezone="Saskatchewan">(UTC-06:00) Saskatchewan</option>
+                <option value="Central Standard Time" data-timezone="Central Time (US &amp; Canada)">(UTC-05:00) Central Time (US &amp; Canada)</option>
+                <option value="Easter Island Standard Time" data-timezone="Easter Island">(UTC-05:00) Easter Island</option>
+                <option value="SA Pacific Standard Time" data-timezone="Bogota, Lima, Quito, Rio Branco">(UTC-05:00) Bogota, Lima, Quito, Rio Branco</option>
+                <option value="Eastern Standard Time (Mexico)" data-timezone="Chetumal">(UTC-05:00) Chetumal</option>
+                <option value="Eastern Standard Time" data-timezone="Eastern Time (US &amp; Canada)">(UTC-04:00) Eastern Time (US &amp; Canada)</option>
+                <option value="Haiti Standard Time" data-timezone="Haiti">(UTC-04:00) Haiti</option>
+                <option value="Cuba Standard Time" data-timezone="Cuba Standard Time">(UTC-04:00) Cuba Standard Time</option>
+                <option value="US Eastern Standard Time" data-timezone="Indiana (East)">(UTC-04:00) Indiana (East)</option>
+                <option value="Turks And Caicos Standard Time" data-timezone="Turks and Caicos">(UTC-04:00) Turks and Caicos</option>
+                <option value="Venezuela Standard Time" data-timezone="Caracas">(UTC-04:00) Caracas</option>
+                <option value="Central Brazilian Standard Time" data-timezone="Cuiaba">(UTC-04:00) Cuiaba</option>
+                <option value="SA Western Standard Time" data-timezone="Georgetown, La Paz, Manaus, San Juan">(UTC-04:00) Georgetown, La Paz, Manaus, San Juan</option>
+                <option value="Atlantic Standard Time" data-timezone="Atlantic Time (Canada)">(UTC-03:00) Atlantic Time (Canada)</option>
+                <option value="Pacific SA Standard Time" data-timezone="Santiago">(UTC-03:00) Santiago</option>
+                <option value="Tocantins Standard Time" data-timezone="Araguaina">(UTC-03:00) Araguaina</option>
+                <option value="Paraguay Standard Time" data-timezone="Asuncion">(UTC-03:00) Asuncion</option>
+                <option value="E. South America Standard Time" data-timezone="Brasilia, Sao Paulo">(UTC-03:00) Brasilia, Sao Paulo</option>
+                <option value="SA Eastern Standard Time" data-timezone="Cayenne, Fortaleza">(UTC-03:00) Cayenne, Fortaleza</option>
+                <option value="Argentina Standard Time" data-timezone="City of Buenos Aires">(UTC-03:00) City of Buenos Aires</option>
+                <option value="Montevideo Standard Time" data-timezone="Montevideo">(UTC-03:00) Montevideo</option>
+                <option value="Magallanes Standard Time" data-timezone="Punta Arenas">(UTC-03:00) Punta Arenas</option>
+                <option value="Bahia Standard Time" data-timezone="Salvador">(UTC-03:00) Salvador</option>
+                <option value="Newfoundland Standard Time" data-timezone="Newfoundland">(UTC-02:30) Newfoundland</option>
+                <option value="Saint Pierre Standard Time" data-timezone="Saint Pierre and Miquelon">(UTC-02:00) Saint Pierre and Miquelon</option>
+                <option value="UTC-02" data-timezone="Coordinated Universal Time-02">(UTC-02:00) Coordinated Universal Time-02</option>
+                <option value="Mid-Atlantic Standard Time" data-timezone="Mid-Atlantic - Old">(UTC-02:00) Mid-Atlantic - Old</option>
+                <option value="Greenland Standard Time" data-timezone="Greenland">(UTC-01:00) Greenland</option>
+                <option value="Cape Verde Standard Time" data-timezone="Cabo Verde Is.">(UTC-01:00) Cabo Verde Is.</option>
+                <option value="Azores Standard Time" data-timezone="Azores">(UTC) Azores</option>
+                <option value="Morocco Standard Time" data-timezone="Casablanca">(UTC) Casablanca</option>
+                <option value="UTC" data-timezone="Coordinated Universal Time">(UTC) Coordinated Universal Time</option>
+                <option value="Greenwich Standard Time" data-timezone="Monrovia, Reykjavik">(UTC) Monrovia, Reykjavik</option>
+                <option value="Sao Tome Standard Time" data-timezone="Sao Tome">(UTC) Sao Tome</option>
+                <option value="GMT Standard Time" data-timezone="Dublin, Edinburgh, Lisbon, London">(UTC&#x2B;01:00) Dublin, Edinburgh, Lisbon, London</option>
+                <option value="W. Central Africa Standard Time" data-timezone="West Central Africa">(UTC&#x2B;01:00) West Central Africa</option>
+                <option value="W. Europe Standard Time" data-timezone="Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna">(UTC&#x2B;02:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna</option>
+                <option value="Central Europe Standard Time" data-timezone="Belgrade, Bratislava, Budapest, Ljubljana, Prague">(UTC&#x2B;02:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague</option>
+                <option value="Romance Standard Time" data-timezone="Brussels, Copenhagen, Madrid, Paris">(UTC&#x2B;02:00) Brussels, Copenhagen, Madrid, Paris</option>
+                <option value="Central European Standard Time" data-timezone="Sarajevo, Skopje, Warsaw, Zagreb">(UTC&#x2B;02:00) Sarajevo, Skopje, Warsaw, Zagreb</option>
+                <option value="South Africa Standard Time" data-timezone="Harare, Pretoria">(UTC&#x2B;02:00) Harare, Pretoria</option>
+                <option value="South Sudan Standard Time" data-timezone="South Sudan Standard Time">(UTC&#x2B;02:00) South Sudan Standard Time</option>
+                <option value="Kaliningrad Standard Time" data-timezone="Kaliningrad">(UTC&#x2B;02:00) Kaliningrad</option>
+                <option value="Sudan Standard Time" data-timezone="Khartoum">(UTC&#x2B;02:00) Khartoum</option>
+                <option value="Libya Standard Time" data-timezone="Tripoli">(UTC&#x2B;02:00) Tripoli</option>
+                <option value="Namibia Standard Time" data-timezone="Windhoek">(UTC&#x2B;02:00) Windhoek</option>
+                <option value="GTB Standard Time" data-timezone="Athens, Bucharest">(UTC&#x2B;03:00) Athens, Bucharest</option>
+                <option value="Middle East Standard Time" data-timezone="Beirut">(UTC&#x2B;03:00) Beirut</option>
+                <option value="Egypt Standard Time" data-timezone="Cairo">(UTC&#x2B;03:00) Cairo</option>
+                <option value="E. Europe Standard Time" data-timezone="Chisinau">(UTC&#x2B;03:00) Chisinau</option>
+                <option value="West Bank Standard Time" data-timezone="Gaza, Hebron">(UTC&#x2B;03:00) Gaza, Hebron</option>
+                <option value="FLE Standard Time" data-timezone="Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius">(UTC&#x2B;03:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius</option>
+                <option value="Israel Standard Time" data-timezone="Jerusalem">(UTC&#x2B;03:00) Jerusalem</option>
+                <option value="Jordan Standard Time" data-timezone="Amman">(UTC&#x2B;03:00) Amman</option>
+                <option value="Arabic Standard Time" data-timezone="Baghdad">(UTC&#x2B;03:00) Baghdad</option>
+                <option value="Syria Standard Time" data-timezone="Syria Standard Time">(UTC&#x2B;03:00) Syria Standard Time</option>
+                <option value="Turkey Standard Time" data-timezone="Istanbul">(UTC&#x2B;03:00) Istanbul</option>
+                <option value="Arab Standard Time" data-timezone="Kuwait, Riyadh">(UTC&#x2B;03:00) Kuwait, Riyadh</option>
+                <option value="Belarus Standard Time" data-timezone="Minsk">(UTC&#x2B;03:00) Minsk</option>
+                <option value="Russian Standard Time" data-timezone="Moscow, St. Petersburg">(UTC&#x2B;03:00) Moscow, St. Petersburg</option>
+                <option value="E. Africa Standard Time" data-timezone="Nairobi">(UTC&#x2B;03:00) Nairobi</option>
+                <option value="Volgograd Standard Time" data-timezone="Volgograd">(UTC&#x2B;03:00) Volgograd</option>
+                <option value="Iran Standard Time" data-timezone="Iran Standard Time">(UTC&#x2B;03:30) Iran Standard Time</option>
+                <option value="Arabian Standard Time" data-timezone="Abu Dhabi, Muscat">(UTC&#x2B;04:00) Abu Dhabi, Muscat</option>
+                <option value="Astrakhan Standard Time" data-timezone="Astrakhan, Ulyanovsk">(UTC&#x2B;04:00) Astrakhan, Ulyanovsk</option>
+                <option value="Azerbaijan Standard Time" data-timezone="Baku">(UTC&#x2B;04:00) Baku</option>
+                <option value="Russia Time Zone 3" data-timezone="Izhevsk, Samara">(UTC&#x2B;04:00) Izhevsk, Samara</option>
+                <option value="Mauritius Standard Time" data-timezone="Port Louis">(UTC&#x2B;04:00) Port Louis</option>
+                <option value="Saratov Standard Time" data-timezone="Saratov">(UTC&#x2B;04:00) Saratov</option>
+                <option value="Georgian Standard Time" data-timezone="Tbilisi">(UTC&#x2B;04:00) Tbilisi</option>
+                <option value="Caucasus Standard Time" data-timezone="Yerevan">(UTC&#x2B;04:00) Yerevan</option>
+                <option value="Afghanistan Standard Time" data-timezone="Kabul">(UTC&#x2B;04:30) Kabul</option>
+                <option value="West Asia Standard Time" data-timezone="Ashgabat, Tashkent">(UTC&#x2B;05:00) Ashgabat, Tashkent</option>
+                <option value="Qyzylorda Standard Time" data-timezone="Qyzylorda">(UTC&#x2B;05:00) Qyzylorda</option>
+                <option value="Ekaterinburg Standard Time" data-timezone="Ekaterinburg">(UTC&#x2B;05:00) Ekaterinburg</option>
+                <option value="Pakistan Standard Time" data-timezone="Islamabad, Karachi">(UTC&#x2B;05:00) Islamabad, Karachi</option>
+                <option value="India Standard Time" data-timezone="Chennai, Kolkata, Mumbai, New Delhi">(UTC&#x2B;05:30) Chennai, Kolkata, Mumbai, New Delhi</option>
+                <option value="Sri Lanka Standard Time" data-timezone="Sri Jayawardenepura">(UTC&#x2B;05:30) Sri Jayawardenepura</option>
+                <option value="Nepal Standard Time" data-timezone="Kathmandu">(UTC&#x2B;05:45) Kathmandu</option>
+                <option value="Central Asia Standard Time" data-timezone="Astana">(UTC&#x2B;06:00) Astana</option>
+                <option value="Bangladesh Standard Time" data-timezone="Dhaka">(UTC&#x2B;06:00) Dhaka</option>
+                <option value="Omsk Standard Time" data-timezone="Omsk">(UTC&#x2B;06:00) Omsk</option>
+                <option value="Myanmar Standard Time" data-timezone="Yangon (Rangoon)">(UTC&#x2B;06:30) Yangon (Rangoon)</option>
+                <option value="SE Asia Standard Time" data-timezone="Bangkok, Hanoi, Jakarta">(UTC&#x2B;07:00) Bangkok, Hanoi, Jakarta</option>
+                <option value="Altai Standard Time" data-timezone="Barnaul, Gorno-Altaysk">(UTC&#x2B;07:00) Barnaul, Gorno-Altaysk</option>
+                <option value="W. Mongolia Standard Time" data-timezone="Hovd">(UTC&#x2B;07:00) Hovd</option>
+                <option value="North Asia Standard Time" data-timezone="Krasnoyarsk">(UTC&#x2B;07:00) Krasnoyarsk</option>
+                <option value="N. Central Asia Standard Time" data-timezone="Novosibirsk">(UTC&#x2B;07:00) Novosibirsk</option>
+                <option value="Tomsk Standard Time" data-timezone="Tomsk">(UTC&#x2B;07:00) Tomsk</option>
+                <option value="China Standard Time" data-timezone="Beijing, Chongqing, Hong Kong, Urumqi">(UTC&#x2B;08:00) Beijing, Chongqing, Hong Kong, Urumqi</option>
+                <option value="North Asia East Standard Time" data-timezone="Irkutsk">(UTC&#x2B;08:00) Irkutsk</option>
+                <option value="Singapore Standard Time" data-timezone="Kuala Lumpur, Singapore">(UTC&#x2B;08:00) Kuala Lumpur, Singapore</option>
+                <option value="W. Australia Standard Time" data-timezone="Perth">(UTC&#x2B;08:00) Perth</option>
+                <option value="Taipei Standard Time" data-timezone="Taipei">(UTC&#x2B;08:00) Taipei</option>
+                <option value="Ulaanbaatar Standard Time" data-timezone="Ulaanbaatar">(UTC&#x2B;08:00) Ulaanbaatar</option>
+                <option value="Aus Central W. Standard Time" data-timezone="Eucla">(UTC&#x2B;08:45) Eucla</option>
+                <option value="Transbaikal Standard Time" data-timezone="Chita">(UTC&#x2B;09:00) Chita</option>
+                <option value="Tokyo Standard Time" data-timezone="Osaka, Sapporo, Tokyo">(UTC&#x2B;09:00) Osaka, Sapporo, Tokyo</option>
+                <option value="North Korea Standard Time" data-timezone="Pyongyang">(UTC&#x2B;09:00) Pyongyang</option>
+                <option value="Korea Standard Time" data-timezone="Seoul">(UTC&#x2B;09:00) Seoul</option>
+                <option value="Yakutsk Standard Time" data-timezone="Yakutsk">(UTC&#x2B;09:00) Yakutsk</option>
+                <option value="AUS Central Standard Time" data-timezone="Darwin">(UTC&#x2B;09:30) Darwin</option>
+                <option value="E. Australia Standard Time" data-timezone="Brisbane">(UTC&#x2B;10:00) Brisbane</option>
+                <option value="West Pacific Standard Time" data-timezone="Guam, Port Moresby">(UTC&#x2B;10:00) Guam, Port Moresby</option>
+                <option value="Vladivostok Standard Time" data-timezone="Vladivostok">(UTC&#x2B;10:00) Vladivostok</option>
+                <option value="Cen. Australia Standard Time" data-timezone="Adelaide">(UTC&#x2B;10:30) Adelaide</option>
+                <option value="AUS Eastern Standard Time" data-timezone="Canberra, Melbourne, Sydney">(UTC&#x2B;11:00) Canberra, Melbourne, Sydney</option>
+                <option value="Tasmania Standard Time" data-timezone="Hobart">(UTC&#x2B;11:00) Hobart</option>
+                <option value="Lord Howe Standard Time" data-timezone="Lord Howe Island">(UTC&#x2B;11:00) Lord Howe Island</option>
+                <option value="Bougainville Standard Time" data-timezone="Bougainville Island">(UTC&#x2B;11:00) Bougainville Island</option>
+                <option value="Russia Time Zone 10" data-timezone="Chokurdakh">(UTC&#x2B;11:00) Chokurdakh</option>
+                <option value="Magadan Standard Time" data-timezone="Magadan">(UTC&#x2B;11:00) Magadan</option>
+                <option value="Norfolk Standard Time" data-timezone="Norfolk Island">(UTC&#x2B;11:00) Norfolk Island</option>
+                <option value="Sakhalin Standard Time" data-timezone="Sakhalin">(UTC&#x2B;11:00) Sakhalin</option>
+                <option value="Central Pacific Standard Time" data-timezone="Solomon Is., New Caledonia">(UTC&#x2B;11:00) Solomon Is., New Caledonia</option>
+                <option value="Russia Time Zone 11" data-timezone="Anadyr, Petropavlovsk-Kamchatsky">(UTC&#x2B;12:00) Anadyr, Petropavlovsk-Kamchatsky</option>
+                <option value="UTC&#x2B;12" data-timezone="Coordinated Universal Time&#x2B;12">(UTC&#x2B;12:00) Coordinated Universal Time&#x2B;12</option>
+                <option value="Fiji Standard Time" data-timezone="Fiji">(UTC&#x2B;12:00) Fiji</option>
+                <option value="New Zealand Standard Time" data-timezone="Auckland, Wellington">(UTC&#x2B;13:00) Auckland, Wellington</option>
+                <option value="Kamchatka Standard Time" data-timezone="Petropavlovsk-Kamchatsky - Old">(UTC&#x2B;13:00) Petropavlovsk-Kamchatsky - Old</option>
+                <option value="UTC&#x2B;13" data-timezone="Coordinated Universal Time&#x2B;13">(UTC&#x2B;13:00) Coordinated Universal Time&#x2B;13</option>
+                <option value="Tonga Standard Time" data-timezone="Nukualofa">(UTC&#x2B;13:00) Nukualofa</option>
+                <option value="Samoa Standard Time" data-timezone="Samoa">(UTC&#x2B;13:00) Samoa</option>
+                <option value="Chatham Islands Standard Time" data-timezone="Chatham Islands">(UTC&#x2B;13:45) Chatham Islands</option>
+                <option value="Line Islands Standard Time" data-timezone="Kiritimati Island">(UTC&#x2B;14:00) Kiritimati Island</option>
+        </select>
+    <input name="__RequestVerificationToken" type="hidden" value="CfDJ8HYBKvcWCtlGnDxx2CEo9D86ezfVetFf02LYjb4rDfkZMVlanBu9qXvLXrmXTHKVCijG83hGauSPuvBPucE2qIOa5aUjR0Y-XS8HDj28W6CA2rPSrxF-uoJaGV7UN8KdfY0revg0p42hNw32l1QqFeA" /></form>
+</div>
+                </div>
+                <div class="column has-padding-small-mobile has-padding-left-none has-padding-right-large has-margin-top-medium has-padding-right-none" align="center">
+                    <div class="columns has-margin-top-none-tablet links">
+                        <div class="column">
+                            <div class="columns is-desktop has-padding-left-none-mobile is-full-width has-padding-top-none has-padding-left-medium has-padding-right-none">
+                                <div class="column has-padding-left-medium-mobile has-padding-left-small has-padding-right-small has-padding-top-none text-align-initial has-padding-left-large-tablet">
+                                    <p>
+                                        <a pw-id="contact-footer-link" class="has-text-tertiary font-size-m text-decoration-underline" href="mailto:reactor@microsoft.com" target="_blank">
+                                            Contact
+                                        </a>
+                                    </p>
+                                    <p>
+                                        <a pw-id="trademarks-footer-link" class="has-text-tertiary font-size-m text-decoration-underline" href="https://www.microsoft.com/legal/intellectualproperty/trademarks/usage/general/" target="_blank">
+                                            Trademarks
+                                        </a>
+                                    </p>
+                                    <p>
+                                        <a pw-id="privacy-footer-link" class="has-text-tertiary font-size-m text-decoration-underline" href="https://go.microsoft.com/fwlink/?LinkID=521839" target="_blank">
+                                            Privacy &amp; Cookies
+                                        </a>
+                                    </p>
+                                    <p>
+                                        <a pw-id="terms-footer-link" class="has-text-tertiary font-size-m text-decoration-underline" href="https://www.microsoft.com/legal/terms-of-use" target="_blank">
+                                            Terms Of Use
+                                        </a>
+                                    </p>
+                                    <p>
+                                        <a pw-id="code-of-conduct-footer-link" class="has-text-tertiary font-size-m text-decoration-underline" target="_blank" href="/en-us/reactor/codeofconduct/">
+                                            Code Of Conduct
+                                        </a>
+                                    </p>
+                                    <p>
+                                        <a pw-id="privacy-choices-footer-link" class="has-text-tertiary font-size-m margin-left-minus-6px flex-center text-decoration-underline" href="https://aka.ms/YourCaliforniaPrivacyChoices" target="_blank">
+                                            <img pw-id="privacy-choices-img-link" src="/reactor/images/footer/privacy-choices.svg?v=VGHyTE21cTmaktlGmjjTFVeL_TFP4hhCgoGVhIgHBH0" alt="Your Privacy Choices logo">
+                                            Your Privacy Choices
+                                        </a>
+                                    </p>
+                                    <p>
+                                        <a pw-id="consumer-health-privacy-footer-link" class="has-text-tertiary font-size-m text-decoration-underline" href="https://go.microsoft.com/fwlink/?linkid=2259814" target="_blank">
+                                            Consumer Health Privacy
+                                        </a>
+                                    </p>
+                                </div>
+                                <div class="column has-padding-left-none has-padding-right-none has-padding-top-none" align="right">
+                                    <p class="font-size-s">&copy; 2026 Microsoft</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script type="text/javascript" src="https://wcpstatic.microsoft.com/mscc/lib/v2/wcp-consent.js"></script>
+    <script data-user-culture="en-us" data-enable-clarity="True" id="cookie-banner-init-script-tag" src="/reactor/js/cookie-banner-init.js?v=wj5Ujs1H5Eb8PEhbxwDhRHLginQ53zMwnlQ7W3T9Nx0"></script>
+    <script src="/reactor/lib/jquery/dist/jquery.min.js?v=eqaw4I9IoPldjffqieTL_h7z0ejA9zc_fyXt-05KMl4"></script>
+    <script src="/reactor/lib/jquery-validation/dist/jquery.validate.min.js?v=6e0N-WJiVKBeTitK1GKSwPi3rbdPpLtuqaiitZjeD2w"></script>
+    <script src="/reactor/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js?v=RFWFWIIPsjB4DucR4jqwxTWw13ZmtI-s6tVR2LJmZXk"></script>
+    <script src="/reactor/lib/moment/moment-with-locales.min.js?v=UOcdfMzkAExbYm8m-B7_AcQx__mqGUEGyHdomROhBSs"></script>
+    <script src="/reactor/lib/focus-visible/dist/focus-visible.min.js?v=_9fC7ik3JoSq_CfmrypSxuAYyYs_r2-W4d8viQOe0m8"></script>
+    <script defer src="/reactor/js/shared/show-burger-menu.js?v=drF7JTwX-8kt1KQJH7zNDjvu4QmSsWLRt0eC4yvm6gg"></script>
+    <script src="/reactor/lib/moment/moment-timezone.min.js?v=jn0oWkSRYN1tvR1IpFFL594Ow090RIc40eJgPYVe4_o"></script>
+    <script src="/reactor/lib/moment/moment-timezone-with-data.min.js?v=EgLHsIgdfFq_VysQCLA2HPSFKY3aVzSne3kZ7NgJ0Gs"></script>
+    <script src="/reactor/js/time-zone-default.js?v=bH2KMWbifI-SkIpEsueose8jXTcnwR5TVhCCpN82FLY"></script>
+    <script src="/reactor/lib/ms-analytics-web/ms.analytics-web-3.min.js?v=2X6pYg_ZYpbWCjozWgE2_G6TgV4Fb4JyPQw9aM1xs5o"></script>
+    <script id="oneDS-aplication-insights" data-oneDSTenantId="a8ac8b1431b6498caaba4accf8f3d3b2-62eb6e34-e189-42a2-958d-af22a4ad0793-7542" data-host="Production" data-userIsAuthenticadted="false" src="/reactor/js/shared/oneDS-aplication-insights.js?v=-X3FQUj8g1Gt2xgxpKxemdxQfWNubvb2xhjNNR2BERA"></script>
+    
+    <script src="/reactor/js/shared/checkbox-validator.js?v=lXRgVlIEGOkUesPnRg2fa52YgahvAExf73_LkwyR9i0"></script>
+    <script id="register-1ds-data-bi" src="/reactor/js/event-details/register-1ds-data-bi.js?v=2Isvoh1DYh6bFBJw_o3tGHMp97ofbfjcM7tbAKAGs-s"></script>
+    <script src="/reactor/js/event-details/registration.js?v=WLvyvGsp5F6NZaETyC_dbZPBPucddrbmQWhJ7G90BpA"></script>
+    <script data-executeTimeZone="True" id="shouldRunTimeZoneReExecution" src="/reactor/js/time-zone-execute.js?v=pk-UvHBCuNyOVuEzaRN2xfU-s8cgMaUQzP5v4cXODLE"></script>
+
+        <script src="/reactor/js/shared/carousel.js?v=3BCSwe7HaSvb8JfG54uQ5V0QTlGLN2Lo0h-yD1fm2YI"></script>
+        <script src="/reactor/js/event-details/speaker-bio-event-details.js?v=FCDGv_DvKqAPIzj1ZBLaPULdxQGP86M_hKxj9P_5NsQ"></script>
+
+</body>
+</html>

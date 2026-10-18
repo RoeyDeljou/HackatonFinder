@@ -1,0 +1,626 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!--[if IE 6]><html class="ie6" xmlns="http://www.w3.org/1999/xhtml"><![endif]-->
+<!--[if IE 7]><html class="lt-ie8 lt-ie9" xmlns="http://www.w3.org/1999/xhtml"><![endif]-->
+<!--[if IE 8]><html class="lt-ie9" xmlns="http://www.w3.org/1999/xhtml"><![endif]-->
+<!--[if gt IE 8]><!--><html xmlns="http://www.w3.org/1999/xhtml"><!--<![endif]-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=1" />
+  <meta name="referrer" content="origin" />
+  <meta name="HandheldFriendly" content="true" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>&quot;premier league&quot; hackathon at DuckDuckGo</title>
+  <link title="DuckDuckGo (HTML)" type="application/opensearchdescription+xml" rel="search" href="//duckduckgo.com/opensearch_html_v2.xml" />
+  <link href="//duckduckgo.com/favicon.ico" rel="shortcut icon" />
+  <link rel="icon" href="//duckduckgo.com/favicon.ico" type="image/x-icon" />
+  <link id="icon60" rel="apple-touch-icon" href="//duckduckgo.com/assets/icons/meta/DDG-iOS-icon_60x60.png?v=2"/>
+  <link id="icon76" rel="apple-touch-icon" sizes="76x76" href="//duckduckgo.com/assets/icons/meta/DDG-iOS-icon_76x76.png?v=2"/>
+  <link id="icon120" rel="apple-touch-icon" sizes="120x120" href="//duckduckgo.com/assets/icons/meta/DDG-iOS-icon_120x120.png?v=2"/>
+  <link id="icon152" rel="apple-touch-icon" sizes="152x152" href="//duckduckgo.com/assets/icons/meta/DDG-iOS-icon_152x152.png?v=2"/>
+  <link rel="image_src" href="//duckduckgo.com/assets/icons/meta/DDG-icon_256x256.png">
+  <link rel="stylesheet" media="handheld, all" href="//duckduckgo.com/dist/h.12e359033b8c1146e5f7.css" type="text/css"/>
+</head>
+
+<body class="body--html">
+  <a name="top" id="top"></a>
+
+  <form action="/html/" method="post">
+    <input type="text" name="state_hidden" id="state_hidden" />
+  </form>
+
+  <div>
+    <div class="site-wrapper-border"></div>
+
+    <div id="header" class="header cw header--html">
+      <a title="DuckDuckGo" href="/html/" class="header__logo-wrap"></a>
+
+      <form name="x" class="header__form" action="/html/" method="post">
+        <div class="search search--header">
+          <input name="q" autocomplete="off" class="search__input" id="search_form_input_homepage" type="text" value="&quot;premier league&quot; hackathon" />
+          <input name="b" id="search_button_homepage" class="search__button search__button--html" value="" title="Search" alt="Search" type="submit" />
+        </div>
+
+        
+        
+        
+        
+
+        <div class="frm__select">
+          <select name="kl">
+            
+              <option value="" >All Regions</option>
+            
+              <option value="ar-es" >Argentina</option>
+            
+              <option value="au-en" >Australia</option>
+            
+              <option value="at-de" >Austria</option>
+            
+              <option value="be-fr" >Belgium (fr)</option>
+            
+              <option value="be-nl" >Belgium (nl)</option>
+            
+              <option value="br-pt" >Brazil</option>
+            
+              <option value="bg-bg" >Bulgaria</option>
+            
+              <option value="ca-en" >Canada (en)</option>
+            
+              <option value="ca-fr" >Canada (fr)</option>
+            
+              <option value="ct-ca" >Catalonia</option>
+            
+              <option value="cl-es" >Chile</option>
+            
+              <option value="cn-zh" >China</option>
+            
+              <option value="co-es" >Colombia</option>
+            
+              <option value="hr-hr" >Croatia</option>
+            
+              <option value="cz-cs" >Czech Republic</option>
+            
+              <option value="dk-da" >Denmark</option>
+            
+              <option value="ee-et" >Estonia</option>
+            
+              <option value="fi-fi" >Finland</option>
+            
+              <option value="fr-fr" >France</option>
+            
+              <option value="de-de" >Germany</option>
+            
+              <option value="gr-el" >Greece</option>
+            
+              <option value="hk-tzh" >Hong Kong</option>
+            
+              <option value="hu-hu" >Hungary</option>
+            
+              <option value="is-is" >Iceland</option>
+            
+              <option value="in-en" >India (en)</option>
+            
+              <option value="id-en" >Indonesia (en)</option>
+            
+              <option value="ie-en" >Ireland</option>
+            
+              <option value="il-en" >Israel (en)</option>
+            
+              <option value="it-it" >Italy</option>
+            
+              <option value="jp-jp" >Japan</option>
+            
+              <option value="kr-kr" >Korea</option>
+            
+              <option value="lv-lv" >Latvia</option>
+            
+              <option value="lt-lt" >Lithuania</option>
+            
+              <option value="my-en" >Malaysia (en)</option>
+            
+              <option value="mx-es" >Mexico</option>
+            
+              <option value="nl-nl" >Netherlands</option>
+            
+              <option value="nz-en" >New Zealand</option>
+            
+              <option value="no-no" >Norway</option>
+            
+              <option value="pk-en" >Pakistan (en)</option>
+            
+              <option value="pe-es" >Peru</option>
+            
+              <option value="ph-en" >Philippines (en)</option>
+            
+              <option value="pl-pl" >Poland</option>
+            
+              <option value="pt-pt" >Portugal</option>
+            
+              <option value="ro-ro" >Romania</option>
+            
+              <option value="ru-ru" >Russia</option>
+            
+              <option value="xa-ar" >Saudi Arabia</option>
+            
+              <option value="sg-en" >Singapore</option>
+            
+              <option value="sk-sk" >Slovakia</option>
+            
+              <option value="sl-sl" >Slovenia</option>
+            
+              <option value="za-en" >South Africa</option>
+            
+              <option value="es-ca" >Spain (ca)</option>
+            
+              <option value="es-es" >Spain (es)</option>
+            
+              <option value="se-sv" >Sweden</option>
+            
+              <option value="ch-de" >Switzerland (de)</option>
+            
+              <option value="ch-fr" >Switzerland (fr)</option>
+            
+              <option value="tw-tzh" >Taiwan</option>
+            
+              <option value="th-en" >Thailand (en)</option>
+            
+              <option value="tr-tr" >Turkey</option>
+            
+              <option value="us-en" >US (English)</option>
+            
+              <option value="us-es" >US (Spanish)</option>
+            
+              <option value="ua-uk" >Ukraine</option>
+            
+              <option value="uk-en" >United Kingdom</option>
+            
+              <option value="vn-en" >Vietnam (en)</option>
+            
+          </select>
+        </div>
+
+        <div class="frm__select frm__select--last">
+          <select class="" name="df">
+            
+              <option value="" selected>Any Time</option>
+            
+              <option value="d" >Past Day</option>
+            
+              <option value="w" >Past Week</option>
+            
+              <option value="m" >Past Month</option>
+            
+              <option value="y" >Past Year</option>
+            
+          </select>
+        </div>
+      </form>
+    </div>
+
+    
+
+    
+      <!-- Web results are present -->
+      <div>
+        <div class="serp__results">
+          <div id="links" class="results">
+            
+
+            
+              
+                <div class="result results_links results_links_deep web-result ">
+                  <div class="links_main links_deep result__body"> <!-- This is the visible part -->
+                    
+                      <h2 class="result__title">
+                        <a rel="nofollow" class="result__a" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fevents.microsoft.com%2Fflow%2Fmicrosoft%2Fplmshackathon%2Fregistration%2Fpage%2Flanding&amp;rut=57aae35dad8978b7afffca24081b0ebb077f31e90ac7bea12ba5699752251766">Microsoft + Premier League</a>
+                      </h2>
+
+                    
+
+                    
+                      <div class="result__extras">
+                        <div class="result__extras__url">
+                          <span class="result__icon">
+                            <a rel="nofollow" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fevents.microsoft.com%2Fflow%2Fmicrosoft%2Fplmshackathon%2Fregistration%2Fpage%2Flanding&amp;rut=57aae35dad8978b7afffca24081b0ebb077f31e90ac7bea12ba5699752251766">
+                              <img class="result__icon__img" width="16" height="16" alt="" src="//external-content.duckduckgo.com/ip3/events.microsoft.com.ico" name="i15" />
+                            </a>
+                          </span>
+                          <a class="result__url" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fevents.microsoft.com%2Fflow%2Fmicrosoft%2Fplmshackathon%2Fregistration%2Fpage%2Flanding&amp;rut=57aae35dad8978b7afffca24081b0ebb077f31e90ac7bea12ba5699752251766">
+                            events.microsoft.com/flow/microsoft/plmshackathon/registration/page/landing
+                          </a>
+                          
+                        </div>
+                      </div>
+                    
+
+                    
+                      
+                        <a class="result__snippet" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fevents.microsoft.com%2Fflow%2Fmicrosoft%2Fplmshackathon%2Fregistration%2Fpage%2Flanding&amp;rut=57aae35dad8978b7afffca24081b0ebb077f31e90ac7bea12ba5699752251766">Microsoft and the <b>Premier League</b> invite developers worldwide to join Inside the Game: Developer <b>Hackathon</b> and build AI-powered solutions that transform synthetic, football-realistic data into explainable match intelligence, real-time narratives, and automated match recaps for studio, broadcast, or streaming scenarios.</a>
+                      
+                    
+
+                    <div class="clear"></div>
+                  </div>
+                </div>
+              
+            
+              
+                <div class="result results_links results_links_deep web-result ">
+                  <div class="links_main links_deep result__body"> <!-- This is the visible part -->
+                    
+                      <h2 class="result__title">
+                        <a rel="nofollow" class="result__a" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fdeveloper.microsoft.com%2Fen%2Dus%2Freactor%2Fseries%2FS%2D1709%2F&amp;rut=538e5f3b0421a77048c92e4053fe86cd2cc11708caa172503e5a6b7d353124d1">Inside the Game: Developer Hackathon | Microsoft Reactor</a>
+                      </h2>
+
+                    
+
+                    
+                      <div class="result__extras">
+                        <div class="result__extras__url">
+                          <span class="result__icon">
+                            <a rel="nofollow" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fdeveloper.microsoft.com%2Fen%2Dus%2Freactor%2Fseries%2FS%2D1709%2F&amp;rut=538e5f3b0421a77048c92e4053fe86cd2cc11708caa172503e5a6b7d353124d1">
+                              <img class="result__icon__img" width="16" height="16" alt="" src="//external-content.duckduckgo.com/ip3/developer.microsoft.com.ico" name="i15" />
+                            </a>
+                          </span>
+                          <a class="result__url" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fdeveloper.microsoft.com%2Fen%2Dus%2Freactor%2Fseries%2FS%2D1709%2F&amp;rut=538e5f3b0421a77048c92e4053fe86cd2cc11708caa172503e5a6b7d353124d1">
+                            developer.microsoft.com/en-us/reactor/series/S-1709/
+                          </a>
+                          
+                        </div>
+                      </div>
+                    
+
+                    
+                      
+                        <a class="result__snippet" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fdeveloper.microsoft.com%2Fen%2Dus%2Freactor%2Fseries%2FS%2D1709%2F&amp;rut=538e5f3b0421a77048c92e4053fe86cd2cc11708caa172503e5a6b7d353124d1">In the Inside the Game: Developer <b>Hackathon</b> (presented by Microsoft and the <b>Premier League</b>), you will build AI-driven solutions that help transform synthetic football events into explainable match intelligence for broadcast and streaming experiences.</a>
+                      
+                    
+
+                    <div class="clear"></div>
+                  </div>
+                </div>
+              
+            
+              
+                <div class="result results_links results_links_deep web-result ">
+                  <div class="links_main links_deep result__body"> <!-- This is the visible part -->
+                    
+                      <h2 class="result__title">
+                        <a rel="nofollow" class="result__a" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fgithub.com%2Fmicrosoft%2Finsidethegamehackathon%2Fblob%2Fmain%2FOFFICIAL%2520RULES.md&amp;rut=0ae58b92de21b2d761df9240d136f90b225cc7fc6dfadb54665340f99341c13a">insidethegamehackathon/OFFICIAL RULES.md at main · microsoft ... - GitHub</a>
+                      </h2>
+
+                    
+
+                    
+                      <div class="result__extras">
+                        <div class="result__extras__url">
+                          <span class="result__icon">
+                            <a rel="nofollow" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fgithub.com%2Fmicrosoft%2Finsidethegamehackathon%2Fblob%2Fmain%2FOFFICIAL%2520RULES.md&amp;rut=0ae58b92de21b2d761df9240d136f90b225cc7fc6dfadb54665340f99341c13a">
+                              <img class="result__icon__img" width="16" height="16" alt="" src="//external-content.duckduckgo.com/ip3/github.com.ico" name="i15" />
+                            </a>
+                          </span>
+                          <a class="result__url" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fgithub.com%2Fmicrosoft%2Finsidethegamehackathon%2Fblob%2Fmain%2FOFFICIAL%2520RULES.md&amp;rut=0ae58b92de21b2d761df9240d136f90b225cc7fc6dfadb54665340f99341c13a">
+                            github.com/microsoft/insidethegamehackathon/blob/main/OFFICIAL RULES.md
+                          </a>
+                          
+                        </div>
+                      </div>
+                    
+
+                    
+                      
+                        <a class="result__snippet" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fgithub.com%2Fmicrosoft%2Finsidethegamehackathon%2Fblob%2Fmain%2FOFFICIAL%2520RULES.md&amp;rut=0ae58b92de21b2d761df9240d136f90b225cc7fc6dfadb54665340f99341c13a">These Official Rules (&quot; Rules &quot;) govern the operation of the Microsoft <b>Premier League</b> <b>Hackathon</b> (&quot; <b>Hackathon</b> &quot;). NO PURCHASE OR PAYMENT NECESSARY TO ENTER OR WIN. A PURCHASE OR PAYMENT WILL NOT INCREASE YOUR CHANCES OF WINNING. SUBMISSION OF ANY ENTRY CONSTITUTES AGREEMENT TO THESE OFFICIAL RULES AS A CONTRACT BETWEEN ENTRANT (AND EACH INDIVIDUAL MEMBER OF ENTRANT) AND MICROSOFT.</a>
+                      
+                    
+
+                    <div class="clear"></div>
+                  </div>
+                </div>
+              
+            
+              
+                <div class="result results_links results_links_deep web-result ">
+                  <div class="links_main links_deep result__body"> <!-- This is the visible part -->
+                    
+                      <h2 class="result__title">
+                        <a rel="nofollow" class="result__a" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fgithub.com%2FMuskan9050195%2Fagentic%2Dpremier%2Dleague%2D2026&amp;rut=e9a44b1e47589880c75b9070b88cf330638735aabca5de728a57141c7cf6bb7b">GitHub - Muskan9050195/agentic-premier-league-2026: AI-powered apps for ...</a>
+                      </h2>
+
+                    
+
+                    
+                      <div class="result__extras">
+                        <div class="result__extras__url">
+                          <span class="result__icon">
+                            <a rel="nofollow" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fgithub.com%2FMuskan9050195%2Fagentic%2Dpremier%2Dleague%2D2026&amp;rut=e9a44b1e47589880c75b9070b88cf330638735aabca5de728a57141c7cf6bb7b">
+                              <img class="result__icon__img" width="16" height="16" alt="" src="//external-content.duckduckgo.com/ip3/github.com.ico" name="i15" />
+                            </a>
+                          </span>
+                          <a class="result__url" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fgithub.com%2FMuskan9050195%2Fagentic%2Dpremier%2Dleague%2D2026&amp;rut=e9a44b1e47589880c75b9070b88cf330638735aabca5de728a57141c7cf6bb7b">
+                            github.com/Muskan9050195/agentic-premier-league-2026
+                          </a>
+                          
+                        </div>
+                      </div>
+                    
+
+                    
+                      
+                        <a class="result__snippet" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fgithub.com%2FMuskan9050195%2Fagentic%2Dpremier%2Dleague%2D2026&amp;rut=e9a44b1e47589880c75b9070b88cf330638735aabca5de728a57141c7cf6bb7b">Agentic <b>Premier League</b> 2026 — <b>Hackathon</b> Submission Built by: Muskan Srivastava (srivastavmuskan030@gmail.com) Event: Agentic <b>Premier League</b> (APL) — Multi-City <b>Hackathon</b> Projects Submitted | Challenge | App | Description | | Challenge 1 | StadiumAI | AI-powered stadium crowd management &amp; fan assistant | | Challenge 2 | AdaptLearn AI | Personalized learning assistant that adapts to user pace ...</a>
+                      
+                    
+
+                    <div class="clear"></div>
+                  </div>
+                </div>
+              
+            
+              
+                <div class="result results_links results_links_deep web-result ">
+                  <div class="links_main links_deep result__body"> <!-- This is the visible part -->
+                    
+                      <h2 class="result__title">
+                        <a rel="nofollow" class="result__a" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Duv%2D%2DsoW%2DQWk&amp;rut=bd755e6fbc5e2a5569e05c52af77fce3d5fcb5eea98c564076c99c83100304a7">Microsoft × Premier League Hackathon 2026 $50,000 Prize ... - YouTube</a>
+                      </h2>
+
+                    
+
+                    
+                      <div class="result__extras">
+                        <div class="result__extras__url">
+                          <span class="result__icon">
+                            <a rel="nofollow" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Duv%2D%2DsoW%2DQWk&amp;rut=bd755e6fbc5e2a5569e05c52af77fce3d5fcb5eea98c564076c99c83100304a7">
+                              <img class="result__icon__img" width="16" height="16" alt="" src="//external-content.duckduckgo.com/ip3/www.youtube.com.ico" name="i15" />
+                            </a>
+                          </span>
+                          <a class="result__url" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Duv%2D%2DsoW%2DQWk&amp;rut=bd755e6fbc5e2a5569e05c52af77fce3d5fcb5eea98c564076c99c83100304a7">
+                            www.youtube.com/watch?v=uv--soW-QWk
+                          </a>
+                          
+                        </div>
+                      </div>
+                    
+
+                    
+                      
+                        <a class="result__snippet" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Duv%2D%2DsoW%2DQWk&amp;rut=bd755e6fbc5e2a5569e05c52af77fce3d5fcb5eea98c564076c99c83100304a7">Microsoft × <b>Premier League</b> — Inside the Game: Developer <b>Hackathon</b> 2026 🚀⚽Looking for an exciting AI + Cloud <b>hackathon</b> opportunity?Microsoft and the Premier ...</a>
+                      
+                    
+
+                    <div class="clear"></div>
+                  </div>
+                </div>
+              
+            
+              
+                <div class="result results_links results_links_deep web-result ">
+                  <div class="links_main links_deep result__body"> <!-- This is the visible part -->
+                    
+                      <h2 class="result__title">
+                        <a rel="nofollow" class="result__a" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fgithub.com%2Fmicrosoft%2Finsidethegamehackathon%2Fblob%2Fmain%2FRESOURCE%2520PLAYLISTS.md&amp;rut=d4693348152ae73ad64cd3608b1b53ca0054eb8df9de05d4e8e1e122edecdf4a">insidethegamehackathon/RESOURCE PLAYLISTS.md at main - GitHub</a>
+                      </h2>
+
+                    
+
+                    
+                      <div class="result__extras">
+                        <div class="result__extras__url">
+                          <span class="result__icon">
+                            <a rel="nofollow" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fgithub.com%2Fmicrosoft%2Finsidethegamehackathon%2Fblob%2Fmain%2FRESOURCE%2520PLAYLISTS.md&amp;rut=d4693348152ae73ad64cd3608b1b53ca0054eb8df9de05d4e8e1e122edecdf4a">
+                              <img class="result__icon__img" width="16" height="16" alt="" src="//external-content.duckduckgo.com/ip3/github.com.ico" name="i15" />
+                            </a>
+                          </span>
+                          <a class="result__url" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fgithub.com%2Fmicrosoft%2Finsidethegamehackathon%2Fblob%2Fmain%2FRESOURCE%2520PLAYLISTS.md&amp;rut=d4693348152ae73ad64cd3608b1b53ca0054eb8df9de05d4e8e1e122edecdf4a">
+                            github.com/microsoft/insidethegamehackathon/blob/main/RESOURCE PLAYLISTS.md
+                          </a>
+                          
+                        </div>
+                      </div>
+                    
+
+                    
+                      
+                        <a class="result__snippet" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fgithub.com%2Fmicrosoft%2Finsidethegamehackathon%2Fblob%2Fmain%2FRESOURCE%2520PLAYLISTS.md&amp;rut=d4693348152ae73ad64cd3608b1b53ca0054eb8df9de05d4e8e1e122edecdf4a">AI Skills Navigator Playlists for the <b>Premier League</b> Hack Participating in the Inside the Game: Developer <b>Hackathon</b>? Start here. These AI Skills Navigator playlists are designed to help you quickly build the skills needed to create impactful solutions using GitHub Copilot, Azure AI Foundry, agents, workflows, and data.</a>
+                      
+                    
+
+                    <div class="clear"></div>
+                  </div>
+                </div>
+              
+            
+              
+                <div class="result results_links results_links_deep web-result ">
+                  <div class="links_main links_deep result__body"> <!-- This is the visible part -->
+                    
+                      <h2 class="result__title">
+                        <a rel="nofollow" class="result__a" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fdatapremierleague.com%2F&amp;rut=469c3558e5107f69726012b17602916afb5de9f04669eb62ae8890984f192257">Data Premier League 2026</a>
+                      </h2>
+
+                    
+
+                    
+                      <div class="result__extras">
+                        <div class="result__extras__url">
+                          <span class="result__icon">
+                            <a rel="nofollow" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fdatapremierleague.com%2F&amp;rut=469c3558e5107f69726012b17602916afb5de9f04669eb62ae8890984f192257">
+                              <img class="result__icon__img" width="16" height="16" alt="" src="//external-content.duckduckgo.com/ip3/datapremierleague.com.ico" name="i15" />
+                            </a>
+                          </span>
+                          <a class="result__url" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fdatapremierleague.com%2F&amp;rut=469c3558e5107f69726012b17602916afb5de9f04669eb62ae8890984f192257">
+                            datapremierleague.com
+                          </a>
+                          
+                        </div>
+                      </div>
+                    
+
+                    
+                      
+                        <a class="result__snippet" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fdatapremierleague.com%2F&amp;rut=469c3558e5107f69726012b17602916afb5de9f04669eb62ae8890984f192257">About the <b>Hackathon</b> The Data <b>Premier League</b> (DPL) is a cricket analytics competition in which participants use real match datasets to address practical challenges in the sport. Participants analyse player and team performance, match strategies and other aspects of the game, using coding, statistical analysis, data visualisation and predictive modelling to generate meaningful insights or ...</a>
+                      
+                    
+
+                    <div class="clear"></div>
+                  </div>
+                </div>
+              
+            
+              
+                <div class="result results_links results_links_deep web-result ">
+                  <div class="links_main links_deep result__body"> <!-- This is the visible part -->
+                    
+                      <h2 class="result__title">
+                        <a rel="nofollow" class="result__a" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DK_g1ONRH8x0&amp;rut=2c1a4aa48f1116a01e1d521464af9b09b60b6ca112375aada4eab249071f2806">SignalFlow — AI-Powered Football Intelligence | Hackathon Demo</a>
+                      </h2>
+
+                    
+
+                    
+                      <div class="result__extras">
+                        <div class="result__extras__url">
+                          <span class="result__icon">
+                            <a rel="nofollow" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DK_g1ONRH8x0&amp;rut=2c1a4aa48f1116a01e1d521464af9b09b60b6ca112375aada4eab249071f2806">
+                              <img class="result__icon__img" width="16" height="16" alt="" src="//external-content.duckduckgo.com/ip3/www.youtube.com.ico" name="i15" />
+                            </a>
+                          </span>
+                          <a class="result__url" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DK_g1ONRH8x0&amp;rut=2c1a4aa48f1116a01e1d521464af9b09b60b6ca112375aada4eab249071f2806">
+                            www.youtube.com/watch?v=K_g1ONRH8x0
+                          </a>
+                          
+                        </div>
+                      </div>
+                    
+
+                    
+                      
+                        <a class="result__snippet" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DK_g1ONRH8x0&amp;rut=2c1a4aa48f1116a01e1d521464af9b09b60b6ca112375aada4eab249071f2806">SignalFlow is an AI-powered football intelligence prototype built for the Microsoft &amp; <b>Premier League</b> Inside the Game: Developer <b>Hackathon</b>.⚽ **What is SignalF...</a>
+                      
+                    
+
+                    <div class="clear"></div>
+                  </div>
+                </div>
+              
+            
+              
+                <div class="result results_links results_links_deep web-result ">
+                  <div class="links_main links_deep result__body"> <!-- This is the visible part -->
+                    
+                      <h2 class="result__title">
+                        <a rel="nofollow" class="result__a" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fkonfhub.com%2Fgoogle%2Dagentic%2Dpremier%2Dleague%2Dudaipur%2Dedition&amp;rut=918f361882cf8cd41ab8f7c99e858f229c3cf6940db764e7eba4cc61c73e3e87">Google Agentic Premier League: Udaipur Edition - konfhub.com</a>
+                      </h2>
+
+                    
+
+                    
+                      <div class="result__extras">
+                        <div class="result__extras__url">
+                          <span class="result__icon">
+                            <a rel="nofollow" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fkonfhub.com%2Fgoogle%2Dagentic%2Dpremier%2Dleague%2Dudaipur%2Dedition&amp;rut=918f361882cf8cd41ab8f7c99e858f229c3cf6940db764e7eba4cc61c73e3e87">
+                              <img class="result__icon__img" width="16" height="16" alt="" src="//external-content.duckduckgo.com/ip3/konfhub.com.ico" name="i15" />
+                            </a>
+                          </span>
+                          <a class="result__url" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fkonfhub.com%2Fgoogle%2Dagentic%2Dpremier%2Dleague%2Dudaipur%2Dedition&amp;rut=918f361882cf8cd41ab8f7c99e858f229c3cf6940db764e7eba4cc61c73e3e87">
+                            konfhub.com/google-agentic-premier-league-udaipur-edition
+                          </a>
+                          
+                        </div>
+                      </div>
+                    
+
+                    
+                      
+                        <a class="result__snippet" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fkonfhub.com%2Fgoogle%2Dagentic%2Dpremier%2Dleague%2Dudaipur%2Dedition&amp;rut=918f361882cf8cd41ab8f7c99e858f229c3cf6940db764e7eba4cc61c73e3e87">Google Developer Group Cloud Udaipur proudly presents the Agentic <b>Premier League</b> Udaipur <b>Hackathon</b>! We&#x27;re bringing the stadium energy to the tech community. This isn&#x27;t just a hackathon—it&#x27;s all about Vibe Coding. Bring your creative intent, focus on narrating a beautiful story through your solution, and let the code flow while the match is on!</a>
+                      
+                    
+
+                    <div class="clear"></div>
+                  </div>
+                </div>
+              
+            
+              
+                <div class="result results_links results_links_deep web-result ">
+                  <div class="links_main links_deep result__body"> <!-- This is the visible part -->
+                    
+                      <h2 class="result__title">
+                        <a rel="nofollow" class="result__a" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fwww.linkedin.com%2Fjobs%2Fmicrosoft%2Dpremier%2Dleague%2Dhackathon%2Djobs&amp;rut=b38c15ba726f9f930b2b1e76967ee66b6b1dd6a662424eaccf540b5a193c6483">Microsoft Premier League Hackathon Jobs in United States ... - LinkedIn</a>
+                      </h2>
+
+                    
+
+                    
+                      <div class="result__extras">
+                        <div class="result__extras__url">
+                          <span class="result__icon">
+                            <a rel="nofollow" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fwww.linkedin.com%2Fjobs%2Fmicrosoft%2Dpremier%2Dleague%2Dhackathon%2Djobs&amp;rut=b38c15ba726f9f930b2b1e76967ee66b6b1dd6a662424eaccf540b5a193c6483">
+                              <img class="result__icon__img" width="16" height="16" alt="" src="//external-content.duckduckgo.com/ip3/www.linkedin.com.ico" name="i15" />
+                            </a>
+                          </span>
+                          <a class="result__url" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fwww.linkedin.com%2Fjobs%2Fmicrosoft%2Dpremier%2Dleague%2Dhackathon%2Djobs&amp;rut=b38c15ba726f9f930b2b1e76967ee66b6b1dd6a662424eaccf540b5a193c6483">
+                            www.linkedin.com/jobs/microsoft-premier-league-hackathon-jobs
+                          </a>
+                          
+                        </div>
+                      </div>
+                    
+
+                    
+                      
+                        <a class="result__snippet" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fwww.linkedin.com%2Fjobs%2Fmicrosoft%2Dpremier%2Dleague%2Dhackathon%2Djobs&amp;rut=b38c15ba726f9f930b2b1e76967ee66b6b1dd6a662424eaccf540b5a193c6483">Today&#x27;s top 2,000+ Microsoft <b>Premier League</b> <b>Hackathon</b> jobs in United States. Leverage your professional network, and get hired. New Microsoft <b>Premier League</b> <b>Hackathon</b> jobs added daily.</a>
+                      
+                    
+
+                    <div class="clear"></div>
+                  </div>
+                </div>
+              
+            
+
+            
+              
+              
+                <div class="nav-link">
+                  <form action="/html/" method="post">
+                    <input type="submit" class='btn btn--alt' value="Next" />
+                    <input type="hidden" name="q" value="&quot;premier league&quot; hackathon" />
+                    <input type="hidden" name="s" value="10" />
+                    <input type="hidden" name="nextParams" value="" />
+                    <input type="hidden" name="v" value="l" />
+                    <input type="hidden" name="o" value="json" />
+                    <input type="hidden" name="dc" value="11" />
+                    <input type="hidden" name="api" value="d.js" />
+                    <input type="hidden" name="vqd" value="4-313810107302806751073419293547816482565" />
+
+                    
+                    
+                    
+                      <input name="kl" value="wt-wt" type="hidden" />
+                    
+                    
+                    
+                    
+                  </form>
+                </div>
+              
+            
+
+            <div class="feedback-btn">
+              <a rel="nofollow" href="//duckduckgo.com/feedback.html" target="_new">Feedback</a>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </div>
+      </div> <!-- links wrapper //-->
+    
+  </div>
+
+  <div id="bottom_spacing2"></div>
+
+  
+    <img src="//duckduckgo.com/t/sl_h"/>
+  
+</body>
+</html>
