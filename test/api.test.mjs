@@ -140,3 +140,16 @@ test('web scout: GitHub fetches queries, posts results, next search shows them',
   assert.ok(pl, 'ingested hackathon appears in results');
   assert.deepEqual(pl.matched, ['Sports']);
 });
+
+test('watchlist endpoint', async () => {
+  const list = await (await fetch(base + '/api/hackathons', { headers: h })).json();
+  const id = list.matches[0].id;
+  assert.equal((await fetch(base + '/api/watchlist', { method: 'POST', headers: h, body: JSON.stringify({ id: 'nope' }) })).status, 400);
+  const add = await fetch(base + '/api/watchlist', { method: 'POST', headers: h, body: JSON.stringify({ id, watched: true }) });
+  assert.equal(add.status, 200);
+  let after = await (await fetch(base + '/api/hackathons', { headers: h })).json();
+  assert.deepEqual(after.watchlist.map((w) => w.id), [id]);
+  await fetch(base + '/api/watchlist', { method: 'POST', headers: h, body: JSON.stringify({ id, watched: false }) });
+  after = await (await fetch(base + '/api/hackathons', { headers: h })).json();
+  assert.equal(after.watchlist.length, 0);
+});

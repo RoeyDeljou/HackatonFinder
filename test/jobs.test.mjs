@@ -108,3 +108,28 @@ test('unionFields keeps the highest priority', () => {
   const u = jobs.unionFields([{ fields: [{ name: 'AI', priority: 'low' }] }, { fields: [{ name: 'ai', priority: 'high', keywords: ['x'] }, { name: 'Gaming', priority: 'medium' }] }]);
   assert.deepEqual(u.map((f) => [f.name, f.priority]), [['AI', 'high'], ['Gaming', 'medium']]);
 });
+
+test('watchlist: add, list, keep after closing, remove', async () => {
+  await setup();
+  await jobs.runSearch({ profiles: [await jobs.getProfile(DEV)], collectOpts, now: t('2026-10-18T06:00:00Z') });
+  let r = await jobs.getResults(await jobs.getProfile(DEV));
+  const ai = r.matches.find((m) => m.title.startsWith('Generative AI'));
+  const defi = r.suggestions[0];
+  assert.deepEqual(await jobs.setWatched(await jobs.getProfile(DEV), ai.id, true), { ok: true, watched: true });
+  await jobs.setWatched(await jobs.getProfile(DEV), defi.id, true);
+  assert.equal((await jobs.setWatched(await jobs.getProfile(DEV), '0123456789abcdef', true)).ok, false, 'unknown id refused');
+  r = await jobs.getResults(await jobs.getProfile(DEV));
+  assert.deepEqual(r.watchlist.map((w) => w.title).sort(), ['DeFi Builders Summit Hack', 'Generative AI Agents Jam']);
+  assert.ok(r.watchlist.every((w) => !w.closed));
+  assert.deepEqual(r.watchlist.find((w) => w.id === ai.id).matched, ['AI']);
+
+  // After the AI jam's deadline passes and it leaves the catalog, it stays watched, marked closed.
+  await jobs.scheduledSearch({ slot: 'morning', collectOpts, now: t('2026-11-16T05:00:00Z') });
+  const w = jobs.buildWatchlist(await getStore().hgetall(`watch:${DEV}`), await getStore().hgetall('catalog'), { matches: [], suggestions: [] }, t('2026-11-16T06:00:00Z').getTime());
+  assert.equal(w.find((x) => x.id === ai.id).closed, true);
+  assert.equal(w.find((x) => x.id === ai.id).title, 'Generative AI Agents Jam');
+
+  await jobs.setWatched(await jobs.getProfile(DEV), ai.id, false);
+  r = await jobs.getResults(await jobs.getProfile(DEV));
+  assert.deepEqual(r.watchlist.map((x) => x.id), [defi.id]);
+});

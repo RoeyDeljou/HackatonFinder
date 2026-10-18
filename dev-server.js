@@ -24,7 +24,7 @@ for (const f of ['.env.local', '.env']) {
 
 const PORT = Number(process.env.PORT) || 3000;
 const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json', '.webmanifest': 'application/manifest+json', '.png': 'image/png', '.svg': 'image/svg+xml', '.ico': 'image/x-icon' };
-const API = new Set(['health', 'ingest', 'config', 'profile', 'subscribe', 'search', 'hackathons', 'test-push', 'cron']);
+const API = new Set(['health', 'ingest', 'watchlist', 'config', 'profile', 'subscribe', 'search', 'hackathons', 'test-push', 'cron']);
 
 async function handleApi(name, req, res) {
   const mod = await import(`./api/${name}.js`);

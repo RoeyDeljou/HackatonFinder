@@ -270,12 +270,54 @@ function deadlineText(it) {
   return { text: `${label} ${rel} · ${when}`, soon: days < 3 };
 }
 
+// ------------------------------------------------------------ watchlist
+const isWatched = (id) => !!state.results?.watchlist?.some((w) => w.id === id);
+
+async function toggleWatch(it) {
+  const r = state.results;
+  if (!r) return;
+  r.watchlist ||= [];
+  const on = !isWatched(it.id);
+  // Optimistic update, rolled back if the server says no.
+  const before = r.watchlist;
+  r.watchlist = on ? [{ ...it, watchedAt: new Date().toISOString(), closed: false }, ...before] : before.filter((w) => w.id !== it.id);
+  rerender();
+  try {
+    await api('/api/watchlist', { method: 'POST', body: JSON.stringify({ id: it.id, watched: on }) });
+    toast(on ? 'Added to watchlist ★' : 'Removed from watchlist', 1800);
+  } catch (e) {
+    r.watchlist = before;
+    rerender();
+    toast(e.message);
+  }
+}
+
+function rerender() {
+  const y = window.scrollY;
+  renderResults({ aiPending: !$('#aiBanner').classList.contains('hidden') });
+  window.scrollTo({ top: y });
+}
+
 function card(it, prioByField) {
   const node = $('#cardTpl').content.firstElementChild.cloneNode(true);
   node.href = it.url;
   node.dataset.id = it.id;
   node.querySelector('.source').textContent = (it.sources && it.sources.length > 1 ? it.sources.slice(0, 2).join(' · ') : it.source) || '';
   node.querySelector('.badge-new').classList.toggle('hidden', !it.isNew);
+  const wb = node.querySelector('.watch-btn');
+  const setWatchUi = (on) => {
+    wb.setAttribute('aria-pressed', String(on));
+    wb.textContent = on ? '★ Watching' : '☆ Watch';
+    wb.setAttribute('aria-label', on ? `Remove ${it.title} from watchlist` : `Add ${it.title} to watchlist`);
+  };
+  setWatchUi(isWatched(it.id));
+  wb.addEventListener('click', (e) => {
+    // The card is a link; keep the tap on the button.
+    e.preventDefault();
+    e.stopPropagation();
+    toggleWatch(it);
+  });
+  if (it.closed) node.classList.add('closed');
   node.querySelector('.title').textContent = it.title;
   node.querySelector('.org').textContent = it.organizer || '';
   const meta = node.querySelector('.meta');
@@ -290,6 +332,12 @@ function card(it, prioByField) {
     const t = document.createElement('span');
     t.className = 'tag p-' + (prioByField[f.toLowerCase()] || 'low');
     t.textContent = f;
+    tags.append(t);
+  }
+  if (it.closed) {
+    const t = document.createElement('span');
+    t.className = 'tag closed-tag';
+    t.textContent = 'Closed';
     tags.append(t);
   }
   if (it.kind === 'announcement') {
@@ -389,7 +437,8 @@ function renderResults({ aiPending = false } = {}) {
 
   const fields = r.fields || state.fields;
   const prioByField = Object.fromEntries(fields.map((f) => [f.name.toLowerCase(), f.priority]));
-  const counts = { all: r.matches.length, other: r.suggestions.length, new: [...r.matches, ...r.suggestions].filter((i) => i.isNew).length };
+  r.watchlist ||= [];
+  const counts = { all: r.matches.length, other: r.suggestions.length, watch: r.watchlist.length, new: [...r.matches, ...r.suggestions].filter((i) => i.isNew).length };
   for (const f of fields) counts['f:' + f.name] = r.matches.filter((i) => i.matched.includes(f.name)).length;
 
   if (state.filter === 'new' && !counts.new) state.filter = 'all';
@@ -410,6 +459,7 @@ function renderResults({ aiPending = false } = {}) {
     filters.append(b);
   };
   chip('all', 'Your fields');
+  chip('watch', '★ Watchlist');
   if (counts.new) chip('new', 'New');
   for (const f of fields) chip('f:' + f.name, f.name);
   chip('other', 'Other fields');
@@ -417,7 +467,8 @@ function renderResults({ aiPending = false } = {}) {
   const box = $('#results');
   box.innerHTML = '';
   let list;
-  if (state.filter === 'other') list = r.suggestions;
+  if (state.filter === 'watch') list = r.watchlist;
+  else if (state.filter === 'other') list = r.suggestions;
   else if (state.filter === 'new') list = [...r.matches, ...r.suggestions].filter((i) => i.isNew);
   else if (state.filter.startsWith('f:')) list = r.matches.filter((i) => i.matched.includes(state.filter.slice(2)));
   else list = r.matches;
@@ -445,7 +496,9 @@ function renderResults({ aiPending = false } = {}) {
     sortList(r.suggestions).slice(0, 12).forEach((it) => box.append(card(it, prioByField)));
   }
   const empty = $('#emptyState');
-  empty.textContent = q
+  empty.textContent = state.filter === 'watch' && !q
+    ? 'Your watchlist is empty. Tap ☆ Watch on any hackathon to save it here.'
+    : q
     ? `Nothing matches “${q}” right now. Try a shorter word, or another tab.`
     : state.filter.startsWith('f:')
     ? `No open ${state.filter.slice(2)} hackathons right now. This field is checked every morning and afternoon, and you'll get a notification when one appears.`
